@@ -8,7 +8,7 @@ class User {
       strideLength: userData[0].strideLength,
       dailyStepGoal: userData[0].dailyStepGoal,
       friends: userData[0].friends
-      };
+    };
   }
   returnFirstName() {
     return this.userData.name.split(" ").slice(0, -1).toString();

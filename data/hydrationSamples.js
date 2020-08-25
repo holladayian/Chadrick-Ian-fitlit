@@ -45,3 +45,5 @@ const hydrationSampleData = [
     "numOunces": 64
   }
 ];
+
+module.exports = hydrationSampleData;

@@ -22,7 +22,7 @@ describe('UserRepository', () => {
     expect(repo.returnUserData(1)).to.deep.equal([userSamples[0]]);
   });
 
-  it('should have a method to return the average step goal amongst all users', () => {
+  it('should have method to return the average step goal amongst users', () => {
     expect(repo.returnTotalAverageStepGoal()).to.equal(6666);
   });
 });
