@@ -4,7 +4,7 @@ const UserHydration = require('../src/UserHydration');
 const UserRepository = require('../src/UserRepository');
 const userSamples = require('../data/userSamples')
 
-describe('UserRepository', () => {
+describe('UserHydration', () => {
   let repo;
   let userHydration;
   beforeEach( () => {
@@ -14,5 +14,9 @@ describe('UserRepository', () => {
 
   it('should be a function', () => {
     expect(UserHydration).to.be.a('function');
+  });
+
+  it('should gather all of a users hydration data', () => {
+    expect(userHydration.userHydrationData.length).to.equal(7);
   });
 });
