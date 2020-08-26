@@ -22,6 +22,12 @@ class UserHydration {
     });
     return specificDayOunces;
   }
+  weeklyHydration(date) {
+    this.userHydrationData.filter(datum =>
+      if (datum.date === date) {
+        return datum.numOunces; //incomplete
+      })
+  }
 }
 
 module.exports = UserHydration;

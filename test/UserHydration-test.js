@@ -17,7 +17,7 @@ describe('UserHydration', () => {
   });
 
   it('should gather all of a users hydration data', () => {
-    expect(userHydration.userHydrationData.length).to.equal(7);
+    expect(userHydration.userHydrationData.length).to.equal(8);
   });
 
   it('should return a users average all time hydration', () => {
