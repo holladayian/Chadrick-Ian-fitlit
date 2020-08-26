@@ -13,6 +13,15 @@ class UserHydration {
       += datum.numOunces);
     return Math.floor(totalHydration / this.userHydrationData.length);
   }
+  specificDayHydration(date) {
+    let specificDayOunces;
+    this.userHydrationData.filter(datum => {
+      if (datum.date === date) {
+        specificDayOunces = datum.numOunces;
+      }
+    });
+    return specificDayOunces;
+  }
 }
 
 module.exports = UserHydration;

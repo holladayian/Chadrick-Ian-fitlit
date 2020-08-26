@@ -23,4 +23,9 @@ describe('UserHydration', () => {
   it('should return a users average all time hydration', () => {
     expect(userHydration.allTimeHydrationAverage()).to.equal(62);
   });
+
+  it('should return a users hydration for specific date', () => {
+    expect(userHydration.specificDayHydration("2019/06/15")).to.equal
+    (37);
+  });
 });
