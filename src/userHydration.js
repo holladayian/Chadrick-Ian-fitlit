@@ -12,6 +12,7 @@ class UserHydration {
     this.userHydrationData.forEach(datum => totalHydration
       += datum.numOunces);
     return Math.floor(totalHydration / this.userHydrationData.length);
+    // (identified by their userID - this is the same for all methods requiring a specific user’s data)
   }
   specificDayHydration(date) {
     let specificDayOunces;
@@ -23,10 +24,17 @@ class UserHydration {
     return specificDayOunces;
   }
   weeklyHydration(date) {
-    this.userHydrationData.filter(datum =>
-      if (datum.date === date) {
-        return datum.numOunces; //incomplete
-      })
+  let startDateData = this.userHydrationData.find(datum => datum['date'] === date);
+  let startDate = startDateData['date'];
+  let dates = this.userHydrationData.map(datum => datum.date);
+  let week = dates.reverse().slice(startDate, 7);
+  let weeklySchedule = this.userHydrationData.filter(datum => {
+    if(week.includes(datum.date)) {
+      return datum.numOunces
+    }
+  });
+  let ouncesPerDayForWeek = weeklySchedule.map(datum => datum.numOunces);
+  return ouncesPerDayForWeek;
   }
 }
 

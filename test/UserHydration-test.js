@@ -25,7 +25,15 @@ describe('UserHydration', () => {
   });
 
   it('should return a users hydration for specific date', () => {
-    expect(userHydration.specificDayHydration("2019/06/15")).to.equal
-    (37);
+    expect(userHydration.specificDayHydration("2019/06/15")).to.equal(37);
+  });
+
+  it('should return how many fluid ounces of water consumed each day over the course of a week (7 days)', () => {
+    expect(userHydration.weeklyHydration("2019/06/22")).to.deep.equal(
+      [
+        69, 68, 67, 66,
+        65, 64, 63
+      ]
+    );
   });
 });
