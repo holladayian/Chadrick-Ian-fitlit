@@ -23,7 +23,10 @@ class UserSleep {
     return Math.floor(totalSleepQuality / this.userSleepInformation.length);
   }
   findSpecificDaySleepHours(date) {
-  return this.findStartDateInfo(date).hoursSlept;
+    return this.findStartDateInfo(date).hoursSlept;
+  }
+  findSpecificDaySleepQuality(date) {
+    return this.findStartDateInfo(date).sleepQuality;
   }
 }
 
