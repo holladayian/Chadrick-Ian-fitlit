@@ -31,4 +31,8 @@ describe('UserSleep', () => {
   it('should return a users hours slept for specified day', () => {
     expect(userSleep.findSpecificDaySleepHours("2019/06/15")).to.equal(6.1);
   });
+
+  it('should return a users sleep quality for specified day', () => {
+    expect(userSleep.findSpecificDaySleepQuality("2019/06/15")).to.equal(2.2);
+  });
 });
