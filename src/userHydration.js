@@ -26,17 +26,17 @@ class UserHydration {
   }
 
   weeklyHydration(date) {
-  let startDate = this.findStartDateInfo(date).date;
-  let dates = this.userHydrationInformation.map(day => day.date);
-  let week = dates.reverse().slice(startDate, 7);
+    let startDate = this.findStartDateInfo(date).date;
+    let dates = this.userHydrationInformation.map(day => day.date);
+    let week = dates.reverse().slice(startDate, 7);
   // make sure there is an enrty for every date
   // would this be on the dashboard?
-  let weeklySchedule = this.userHydrationInformation.filter(day => {
-    if(week.includes(day.date)) {
-      return day.numOunces;
-    }
-  });
-   return weeklySchedule.map(day => day.numOunces);
+    let weeklySchedule = this.userHydrationInformation.filter(day => {
+      if (week.includes(day.date)) {
+        return day.numOunces;
+      }
+    });
+    return weeklySchedule.map(day => day.numOunces);
   }
 }
 
