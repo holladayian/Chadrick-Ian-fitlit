@@ -57,6 +57,13 @@ class UserSleep {
     });
     return weeklySchedule.map(day => day.sleepQuality);
   }
+  averageUserSleepQuality() {
+    let totalSleepQuality = sleepSamples.reduce((sum, sample) => {
+      sum += sample.sleepQuality;
+      return sum;
+    },0);
+    return totalSleepQuality/sleepSamples.length;
+  }
 }
 
 

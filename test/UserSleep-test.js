@@ -43,4 +43,8 @@ describe('UserSleep', () => {
   it('should return a users sleep quality for specified week', () => {
     expect(userSleep.weeklySleepQuality("2019/06/22")).to.deep.equal([ 3.8, 3.7, 3.6, 3.5, 3.4, 3.3, 0.1 ]);
   });
+
+  it('should return averages of all users sleep quality', () => {
+  expect(userSleep.averageUserSleepQuality()).to.deep.equal(3.3);
+  });
 });
