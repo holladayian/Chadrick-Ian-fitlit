@@ -1,40 +1,42 @@
-const hydrationSamples = require('../data/hydrationSamples')
+const hydrationSamples = require('../data/hydrationSamples');
+
 class UserHydration {
-  constructor(userData) {
-    this.userHydrationData = hydrationSamples.filter(sample => {
-      if (userData[0].id === sample['userID']) {
+  constructor(user) {
+    this.userHydrationInformation = hydrationSamples.filter(sample => {
+      if (user.id === sample['userID']) {
         return sample;
       }
     });
   }
-  allTimeHydrationAverage() {
+
+  findAllTimeHydrationAverage() {
     let totalHydration = 0;
-    this.userHydrationData.forEach(datum => totalHydration
-      += datum.numOunces);
-    return Math.floor(totalHydration / this.userHydrationData.length);
-    // (identified by their userID - this is the same for all methods requiring a specific user’s data)
+    this.userHydrationInformation.forEach(day => totalHydration
+      += day.numOunces);
+      // maybe use reduce instead of forEach
+    return Math.floor(totalHydration / this.userHydrationInformation.length);
   }
-  specificDayHydration(date) {
-    let specificDayOunces;
-    this.userHydrationData.filter(datum => {
-      if (datum.date === date) {
-        specificDayOunces = datum.numOunces;
-      }
-    });
-    return specificDayOunces;
+
+  findSpecificDayHydration(date) {
+    return this.findStartDateInfo(date).numOunces;
   }
+
+  findStartDateInfo(date) {
+    return this.userHydrationInformation.find(datum => datum['date'] === date);
+  }
+
   weeklyHydration(date) {
-  let startDateData = this.userHydrationData.find(datum => datum['date'] === date);
-  let startDate = startDateData['date'];
-  let dates = this.userHydrationData.map(datum => datum.date);
+  let startDate = this.findStartDateInfo(date).date;
+  let dates = this.userHydrationInformation.map(day => day.date);
   let week = dates.reverse().slice(startDate, 7);
-  let weeklySchedule = this.userHydrationData.filter(datum => {
-    if(week.includes(datum.date)) {
-      return datum.numOunces
+  // make sure there is an enrty for every date
+  // would this be on the dashboard?
+  let weeklySchedule = this.userHydrationInformation.filter(day => {
+    if(week.includes(day.date)) {
+      return day.numOunces;
     }
   });
-  let ouncesPerDayForWeek = weeklySchedule.map(datum => datum.numOunces);
-  return ouncesPerDayForWeek;
+   return weeklySchedule.map(day => day.numOunces);
   }
 }
 

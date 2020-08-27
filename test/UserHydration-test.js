@@ -1,15 +1,14 @@
 const chai = require('chai');
 const expect = chai.expect;
-const UserHydration = require('../src/UserHydration');
+const userSamples = require('../data/userSamples');
 const UserRepository = require('../src/UserRepository');
-const userSamples = require('../data/userSamples')
+const UserHydration = require('../src/UserHydration');
 
 describe('UserHydration', () => {
-  let repo;
-  let userHydration;
+  let userRepo, userHydration;
   beforeEach( () => {
-    repo = new UserRepository(userSamples)
-    userHydration = new UserHydration(repo.returnUserData(1));
+    userRepo = new UserRepository(userSamples);
+    userHydration = new UserHydration(userRepo.findUserInfo(1));
   });
 
   it('should be a function', () => {
@@ -17,15 +16,15 @@ describe('UserHydration', () => {
   });
 
   it('should gather all of a users hydration data', () => {
-    expect(userHydration.userHydrationData.length).to.equal(8);
+    expect(userHydration.userHydrationInformation.length).to.equal(8);
   });
 
   it('should return a users average all time hydration', () => {
-    expect(userHydration.allTimeHydrationAverage()).to.equal(62);
+    expect(userHydration.findAllTimeHydrationAverage()).to.equal(62);
   });
 
   it('should return a users hydration for specific date', () => {
-    expect(userHydration.specificDayHydration("2019/06/15")).to.equal(37);
+    expect(userHydration.findSpecificDayHydration("2019/06/15")).to.equal(37);
   });
 
   it('should return how many fluid ounces of water consumed each day over the course of a week (7 days)', () => {

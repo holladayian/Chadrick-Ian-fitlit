@@ -1,17 +1,21 @@
 class User {
   constructor(userData) {
     this.userData = {
-      id: userData[0].id,
-      name: userData[0].name,
-      address: userData[0].address,
-      email: userData[0].email,
-      strideLength: userData[0].strideLength,
-      dailyStepGoal: userData[0].dailyStepGoal,
-      friends: userData[0].friends
+      id: userData.id,
+      name: userData.name,
+      address: userData.address,
+      email: userData.email,
+      strideLength: userData.strideLength,
+      dailyStepGoal: userData.dailyStepGoal,
+      friends: userData.friends
     };
   }
-  returnFirstName() {
-    return this.userData.name.split(" ").slice(0, -1).toString();
+  findFirstName() {
+    let seperateName = this.userData.name.split(" ");
+    let firstName = seperateName.slice(0, -1);
+    let firstNameAsString = firstName.toString();
+    return firstNameAsString;
+    // return this.userData.name.split(" ").slice(0, -1).toString();
   }
 }
 

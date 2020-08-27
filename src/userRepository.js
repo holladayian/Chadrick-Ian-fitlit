@@ -3,17 +3,18 @@ class UserRepository {
     this.data = data;
   }
 
-  returnUserData(userID) {
-    return this.data.filter(datum => {
-      if (datum.id === userID) {
-        return datum;
+  findUserInfo(userID) {
+    return this.data.find(userDatum => {
+      if (userDatum.id === userID) {
+        return userDatum;
       }
     })
   }
-  returnTotalAverageStepGoal() {
+
+  findTotalAverageStepGoal() {
     let totalStepGoal = 0;
-    this.data.forEach(datum => {
-      return (totalStepGoal += datum['dailyStepGoal']);
+    this.data.forEach(userDatum => {
+      return (totalStepGoal += userDatum['dailyStepGoal']);
     })
     return Math.floor(totalStepGoal / this.data.length);
   }
