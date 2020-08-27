@@ -28,6 +28,9 @@ class UserSleep {
   findSpecificDaySleepQuality(date) {
     return this.findStartDateInfo(date).sleepQuality;
   }
+  findStartDateInfo(date) {
+    return this.userSleepInformation.find(datum => datum['date'] === date);
+  }
 }
 
 
