@@ -15,10 +15,9 @@ class UserSleep {
     return Math.floor(totalSleepHours / this.userSleepInformation.length);
   }
   findAllTimeSleepQualityAverage() {
-    let totalSleepQuality = 0;
-    this.userSleepInformation.forEach(day => totalSleepQuality
-    += day.sleepQuality);
-    // maybe use reduce instead of forEach
+    let totalSleepQuality = this.userSleepInformation.reduce((accumulator, day) => {
+       return accumulator += day.sleepQuality
+     }, 0);
     return Math.floor(totalSleepQuality / this.userSleepInformation.length);
   }
   findSpecificDaySleepHours(date) {
