@@ -64,6 +64,15 @@ class UserSleep {
     },0);
     return totalSleepQuality/sleepSamples.length;
   }
+  findAllUsersAverageSleepQuality() {
+    // we will need to get every user their own instance to access the weeklySleepquality method for each of them.
+    //sleepSamples.forEach(user => user.userid )
+    let userIDs = sleepSamples.map(user => user.userID);
+    console.log(userIDs);
+    return userIDs;
+
+    // we will need to use weekly sleep quality function to get the week sleepQuality values and divide by length of values array created, for each user.
+  }
 }
 
 
