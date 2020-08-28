@@ -1,4 +1,5 @@
 const sleepSamples = require('../data/sleepSamples');
+const moment = require('moment');
 
 class UserSleep {
   constructor(user) {
@@ -8,40 +9,54 @@ class UserSleep {
       }
     });
   }
+
   findAllTimeHoursSleptAverage() {
     let totalSleepHours = this.userSleepInformation.reduce((accumulator, day) => {
-      return accumulator += day.hoursSlept
+      return accumulator += day.hoursSlept;
     }, 0);
     return Math.floor(totalSleepHours / this.userSleepInformation.length);
   }
+
   findAllTimeSleepQualityAverage() {
     let totalSleepQuality = this.userSleepInformation.reduce((accumulator, day) => {
-       return accumulator += day.sleepQuality
+       return accumulator += day.sleepQuality;
      }, 0);
     return Math.floor(totalSleepQuality / this.userSleepInformation.length);
   }
+
   findSpecificDaySleepHours(date) {
     return this.findStartDateInfo(date).hoursSlept;
   }
+
   findSpecificDaySleepQuality(date) {
     return this.findStartDateInfo(date).sleepQuality;
   }
+
   findStartDateInfo(date) {
     return this.userSleepInformation.find(datum => datum['date'] === date);
   }
-  weeklySleepHours(date) {
-    let startDate = this.findStartDateInfo(date).date;
-    let dates = this.userSleepInformation.map(day => day.date);
-    let week = dates.reverse().slice(startDate, 7);
-    // make sure there is an enrty for every date
-    // would this be on the dashboard?
-    let weeklySchedule = this.userSleepInformation.filter(day => {
-      if (week.includes(day.date)) {
-        return day.hoursSlept;
-      }
-    });
+
+  //   findHydrationWeek(startDate, endDate) {
+  //     return this.userHydrationInformation.filter(day => {
+  //       if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
+  //         return day;
+  //       }
+  //     })
+  //   }
+
+  findSleepWeek(startDate, endDate) {
+    return this.userSleepInformation.filter(day => {
+        if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
+          return day;
+        }
+      })
+  }
+
+  weeklySleepHours(startDate, endDate) {
+    let weeklySchedule = this.findSleepWeek(startDate, endDate);
     return weeklySchedule.map(day => day.hoursSlept);
   }
+
   weeklySleepQuality(date) {
     let startDate = this.findStartDateInfo(date).date;
     let dates = this.userSleepInformation.map(day => day.date);
@@ -55,6 +70,7 @@ class UserSleep {
     });
     return weeklySchedule.map(day => day.sleepQuality);
   }
+
   averageUserSleepQuality() {
     let totalSleepQuality = sleepSamples.reduce((sum, sample) => {
       sum += sample.sleepQuality;
@@ -62,6 +78,7 @@ class UserSleep {
     },0);
     return totalSleepQuality/sleepSamples.length;
   }
+
   findAllUsersAverageSleepQuality() {
     // we will need to get every user their own instance to access the weeklySleepquality method for each of them.
     //sleepSamples.forEach(user => user.userid )
