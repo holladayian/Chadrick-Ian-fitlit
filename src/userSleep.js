@@ -57,17 +57,19 @@ class UserSleep {
     return weeklySchedule.map(day => day.hoursSlept);
   }
 
-  weeklySleepQuality(date) {
-    let startDate = this.findStartDateInfo(date).date;
-    let dates = this.userSleepInformation.map(day => day.date);
-    let week = dates.reverse().slice(startDate, 7);
-    // make sure there is an enrty for every date
-    // would this be on the dashboard?
-    let weeklySchedule = this.userSleepInformation.filter(day => {
-      if (week.includes(day.date)) {
-        return day.sleepQuality;
-      }
-    });
+  weeklySleepQuality(startDate, endDate) {
+    let weeklySchedule = this.findSleepWeek(startDate, endDate);
+
+    // let startDate = this.findStartDateInfo(date).date;
+    // let dates = this.userSleepInformation.map(day => day.date);
+    // let week = dates.reverse().slice(startDate, 7);
+    // // make sure there is an enrty for every date
+    // // would this be on the dashboard?
+    // let weeklySchedule = this.userSleepInformation.filter(day => {
+    //   if (week.includes(day.date)) {
+    //     return day.sleepQuality;
+    //   }
+    // });
     return weeklySchedule.map(day => day.sleepQuality);
   }
 
