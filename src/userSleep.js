@@ -9,10 +9,9 @@ class UserSleep {
     });
   }
   findAllTimeHoursSleptAverage() {
-    let totalSleepHours = 0;
-    this.userSleepInformation.forEach(day => totalSleepHours
-      += day.hoursSlept);
-    // maybe use reduce instead of forEach
+    let totalSleepHours = this.userSleepInformation.reduce((accumulator, day) => {
+      return accumulator += day.hoursSlept
+    }, 0);
     return Math.floor(totalSleepHours / this.userSleepInformation.length);
   }
   findAllTimeSleepQualityAverage() {
@@ -74,6 +73,21 @@ class UserSleep {
     // we will need to use weekly sleep quality function to get the week sleepQuality values and divide by length of values array created, for each user.
   }
 }
+
+//
+//   findHydrationWeek(startDate, endDate) {
+//     return this.userHydrationInformation.filter(day => {
+//       if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
+//         return day;
+//       }
+//     })
+//   }
+//
+//   weeklyHydration(startDate, endDate) {
+//     let week = this.findHydrationWeek(startDate, endDate);
+//     return week.map(day => day.numOunces);
+//   }
+// }
 
 
 module.exports = UserSleep;

@@ -47,8 +47,8 @@ describe('UserSleep', () => {
   it('should return averages of all users sleep quality', () => {
   expect(userSleep.averageUserSleepQuality()).to.deep.equal(3.3);
   });
-
-  it('should return  all users whos sleep quality average is above 3', () => {
-  expect(userSleep.findAllUsersAverageSleepQuality()).to.deep.equal(3.3);
-  });
+  // 
+  // it('should return  all users whos sleep quality average is above 3', () => {
+  // expect(userSleep.findAllUsersAverageSleepQuality()).to.deep.equal(3.3);
+  // });
 });
