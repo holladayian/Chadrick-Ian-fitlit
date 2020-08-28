@@ -12,10 +12,9 @@ class UserRepository {
   }
 
   findTotalAverageStepGoal() {
-    let totalStepGoal = 0;
-    this.data.forEach(userDatum => {
-      return (totalStepGoal += userDatum['dailyStepGoal']);
-    })
+    let totalStepGoal = this.data.reduce((accumulator, userDatum) => {
+      return (accumulator += userDatum['dailyStepGoal']);
+    }, 0);
     return Math.floor(totalStepGoal / this.data.length);
   }
 }
