@@ -25,12 +25,16 @@ class UserHydration {
     return this.userHydrationInformation.find(datum => datum['date'] === date);
   }
 
-  weeklyHydration(date) {
-    let week = this.userHydrationInformation.filter(day => {
-      if(moment(day.date).isAfter("2019/06/15") && moment(day.date).subtract(1, 'day').isBefore("2019/06/22")) {
-        return day
+  findHydrationWeek(startDate, endDate) {
+    return this.userHydrationInformation.filter(day => {
+      if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
+        return day;
       }
     })
+  }
+
+  weeklyHydration(startDate, endDate) {
+    let week = this.findHydrationWeek(startDate, endDate);
     return week.map(day => day.numOunces);
   }
 }
