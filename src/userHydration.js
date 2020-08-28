@@ -10,10 +10,9 @@ class UserHydration {
   }
 
   findAllTimeHydrationAverage() {
-    let totalHydration = 0;
-    this.userHydrationInformation.forEach(day => totalHydration
-      += day.numOunces);
-      // maybe use reduce instead of forEach
+    let totalHydration = this.userHydrationInformation.reduce((accumulator, day) => {
+      return accumulator += day.numOunces;
+    }, 0);
     return Math.floor(totalHydration / this.userHydrationInformation.length);
   }
 
