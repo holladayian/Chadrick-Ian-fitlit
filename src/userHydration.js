@@ -1,4 +1,5 @@
 const hydrationSamples = require('../data/hydrationSamples');
+const moment = require('moment');
 
 class UserHydration {
   constructor(user) {
@@ -25,17 +26,12 @@ class UserHydration {
   }
 
   weeklyHydration(date) {
-    let startDate = this.findStartDateInfo(date).date;
-    let dates = this.userHydrationInformation.map(day => day.date);
-    let week = dates.reverse().slice(startDate, 7);
-  // make sure there is an enrty for every date
-  // would this be on the dashboard?
-    let weeklySchedule = this.userHydrationInformation.filter(day => {
-      if (week.includes(day.date)) {
-        return day.numOunces;
+    let week = this.userHydrationInformation.filter(day => {
+      if(moment(day.date).isAfter("2019/06/15") && moment(day.date).subtract(1, 'day').isBefore("2019/06/22")) {
+        return day
       }
-    });
-    return weeklySchedule.map(day => day.numOunces);
+    })
+    return week.map(day => day.numOunces);
   }
 }
 
