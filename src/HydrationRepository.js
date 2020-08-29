@@ -1,4 +1,6 @@
 const hydrationSamples = require('../data/hydrationSamples');
+const UserHydration = require('../src/userHydration');
+
 
 class HydrationRepository {
   constructor() {
@@ -11,6 +13,10 @@ class HydrationRepository {
         return userDatum;
       }
     })
+  }
+
+  instantiateHydroUser(userID) {
+    return new UserHydration(this.obtainUser(userID))
   }
 
 }

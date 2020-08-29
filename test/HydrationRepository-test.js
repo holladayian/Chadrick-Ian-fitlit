@@ -1,6 +1,5 @@
 const chai = require('chai');
 const expect = chai.expect;
-const userSamples = require('../data/userSamples');
 const hydrationSamples = require('../data/hydrationSamples');
 const HydrationRepository = require('../src/HydrationRepository');
 const UserHydration = require('../src/userHydration');
@@ -28,4 +27,8 @@ describe('HydrationRepository', () => {
       }
     );
   });
+
+    it('should instantiate a new UserHydration', () => {
+      expect(hydroRepo.instantiateHydroUser(2)).to.be.an.instanceof(UserHydration);
+    });
 });
