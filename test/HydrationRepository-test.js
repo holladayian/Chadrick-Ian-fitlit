@@ -18,4 +18,14 @@ describe('HydrationRepository', () => {
   it('should be an instance of the HydrationRepository Class', () => {
     expect(hydroRepo).to.be.an.instanceof(HydrationRepository);
   });
+
+  it('should be able to return a specific user\'s hydration information', () => {
+    expect(hydroRepo.obtainUser(2)).to.equal([
+      {
+        "userID": 2,
+        "date": "2019/06/15",
+        "numOunces": 75
+      }
+    ]);
+  });
 });
