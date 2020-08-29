@@ -4,6 +4,7 @@ class UserRepository {
   }
 
   findUserInfo(userID) {
+    // rename to getUser
     return this.data.find(userDatum => {
       if (userDatum.id === userID) {
         return userDatum;
@@ -12,10 +13,9 @@ class UserRepository {
   }
 
   findTotalAverageStepGoal() {
-    let totalStepGoal = 0;
-    this.data.forEach(userDatum => {
-      return (totalStepGoal += userDatum['dailyStepGoal']);
-    })
+    let totalStepGoal = this.data.reduce((accumulator, userDatum) => {
+      return (accumulator += userDatum['dailyStepGoal']);
+    }, 0);
     return Math.floor(totalStepGoal / this.data.length);
   }
 }

@@ -10,6 +10,7 @@ class User {
       friends: userData.friends
     };
   }
+
   findFirstName() {
     let seperateName = this.userData.name.split(" ");
     let firstName = seperateName.slice(0, -1);

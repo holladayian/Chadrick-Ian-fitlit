@@ -4,6 +4,7 @@ const userSamples = require('../data/userSamples');
 const UserRepository = require('../src/UserRepository');
 const UserHydration = require('../src/UserHydration');
 
+
 describe('UserHydration', () => {
   let userRepo, userHydration;
   beforeEach( () => {
@@ -28,7 +29,7 @@ describe('UserHydration', () => {
   });
 
   it('should return how many fluid ounces of water consumed each day over the course of a week (7 days)', () => {
-    expect(userHydration.weeklyHydration("2019/06/22")).to.deep.equal(
+    expect(userHydration.weeklyHydration("2019/06/15", "2019/06/22")).to.deep.equal(
       [
         69, 68, 67, 66,
         65, 64, 63
