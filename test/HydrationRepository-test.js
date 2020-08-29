@@ -19,13 +19,13 @@ describe('HydrationRepository', () => {
   });
 
   it('should be able to return a specific user\'s hydration information', () => {
-    expect(hydroRepo.obtainUser(2)).to.deep.equal(
+    expect(hydroRepo.obtainUser(2)).to.deep.equal([
       {
         "userID": 2,
         "date": "2019/06/15",
         "numOunces": 75
       }
-    );
+    ]);
   });
 
     it('should instantiate a new UserHydration', () => {

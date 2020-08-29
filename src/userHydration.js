@@ -3,12 +3,7 @@ const moment = require('moment');
 
 class UserHydration {
   constructor(user) {
-    this.userHydrationInformation = hydrationSamples.filter(sample => {
-      if (user.id === sample['userID']) {
-        return sample;
-      }
-    });
-    // the functionality for the above should be in a HydrationRepository class
+    this.userHydrationInformation = user;
   }
 
   findAllTimeHydrationAverage() {

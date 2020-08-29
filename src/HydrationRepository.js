@@ -8,7 +8,7 @@ class HydrationRepository {
   }
 
   obtainUser(userID) {
-    return this.hydroInfo.find(userDatum => {
+    return this.hydroInfo.filter(userDatum => {
       if (userDatum.userID === userID) {
         return userDatum;
       }
