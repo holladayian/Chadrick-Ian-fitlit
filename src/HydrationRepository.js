@@ -1,12 +1,16 @@
 const hydrationSamples = require('../data/hydrationSamples');
 
 class HydrationRepository {
-  constructor(hydroInfo) {
-    this.hydroInfo = hydroInfo;
+  constructor() {
+    this.hydroInfo = hydrationSamples;
   }
 
   obtainUser(userID) {
-
+    return this.hydroInfo.find(userDatum => {
+      if (userDatum.userID === userID) {
+        return userDatum;
+      }
+    })
   }
 
 }
