@@ -8,6 +8,7 @@ class UserHydration {
         return sample;
       }
     });
+    // the functionality for the above should be in a HydrationRepository class
   }
 
   findAllTimeHydrationAverage() {

@@ -4,6 +4,7 @@ class UserRepository {
   }
 
   findUserInfo(userID) {
+    // rename to getUser
     return this.data.find(userDatum => {
       if (userDatum.id === userID) {
         return userDatum;
