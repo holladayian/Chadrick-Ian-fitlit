@@ -1,4 +1,3 @@
-const hydrationSamples = require('../data/hydrationSamples');
 const moment = require('moment');
 
 class UserHydration {

@@ -28,7 +28,7 @@ describe('HydrationRepository', () => {
     ]);
   });
 
-    it('should instantiate a new UserHydration', () => {
-      expect(hydroRepo.instantiateHydroUser(2)).to.be.an.instanceof(UserHydration);
-    });
+  it('should instantiate a new UserHydration', () => {
+    expect(hydroRepo.instantiateHydroUser(2)).to.be.an.instanceof(UserHydration);
+  });
 });

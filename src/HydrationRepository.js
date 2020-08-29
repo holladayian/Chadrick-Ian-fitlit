@@ -16,9 +16,8 @@ class HydrationRepository {
   }
 
   instantiateHydroUser(userID) {
-    return new UserHydration(this.obtainUser(userID))
+    return new UserHydration(this.obtainUser(userID));
   }
-
 }
 
 module.exports = HydrationRepository;
