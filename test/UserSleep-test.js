@@ -50,8 +50,4 @@ describe('UserSleep', () => {
   it('should return averages of all users sleep quality', () => {
   expect(userSleep.averageUserSleepQuality()).to.deep.equal(2);
   });
-  // 
-  // it('should return  all users whos sleep quality average is above 3', () => {
-  // expect(userSleep.findAllUsersAverageSleepQuality("2019/06/15", "2019/06/22")).to.deep.equal([ 3, 2, 3 ]);
-  // });
 });
