@@ -1,15 +1,15 @@
 const chai = require('chai');
 const expect = chai.expect;
-const userSamples = require('../data/userSamples');
-const UserRepository = require('../src/UserRepository');
+const hydrationSamples = require('../data/hydrationSamples');
 const UserHydration = require('../src/UserHydration');
+const HydrationRepository = require('../src/HydrationRepository');
 
 
 describe('UserHydration', () => {
   let userRepo, userHydration;
   beforeEach( () => {
-    userRepo = new UserRepository(userSamples);
-    userHydration = new UserHydration(userRepo.findUserInfo(1));
+    hydroRepo = new HydrationRepository(hydrationSamples);
+    userHydration = new UserHydration(hydroRepo.obtainUser(1));
   });
 
   it('should be a function', () => {

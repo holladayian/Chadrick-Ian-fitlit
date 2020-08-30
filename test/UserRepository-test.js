@@ -1,12 +1,11 @@
 const chai = require('chai');
 const expect = chai.expect;
-const userSamples = require('../data/userSamples');
 const UserRepository = require('../src/UserRepository');
 
 describe('UserRepository', () => {
   let userRepo;
   beforeEach( () => {
-    userRepo = new UserRepository(userSamples);
+    userRepo = new UserRepository();
 
   });
 
