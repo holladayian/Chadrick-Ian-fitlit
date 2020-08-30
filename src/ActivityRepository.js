@@ -17,6 +17,15 @@ class ActivityRepository {
   instantiateUserActivity(id) {
     return new UserActivity(this.obtainActivityUser(id));
   }
+
+  findAverageNumberOfStairsClimbedForADate(date) {
+    this.findDateForActivity(date);
+
+  }
+
+  findDateForActivity(specifiedDate) {
+    return this.activityInformation.filter(day => day.date === specifiedDate)
+  }
 }
 
 module.exports = ActivityRepository;

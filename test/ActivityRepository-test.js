@@ -29,4 +29,12 @@ describe('ActivityRepository', () => {
     expect(activityRepo.instantiateUserActivity(1)).to.be.an.instanceof(UserActivity)
   })
 
+  it('should find a date for all activities', () => {
+    expect(activityRepo.findDateForActivity("2019/06/15").length).to.equal(3);
+  })
+
+  it('should calculate the number of stairs climbed for a specific date', () => {
+    expect(activityRepo.findAverageNumberOfStairsClimbedForADate("2019/06/15")).to.equal(2);
+  })
+
 });
