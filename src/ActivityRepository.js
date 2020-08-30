@@ -18,9 +18,12 @@ class ActivityRepository {
     return new UserActivity(this.obtainActivityUser(id));
   }
 
-  findAverageNumberOfStairsClimbedForADate(date) {
-    this.findDateForActivity(date);
-
+  findAverageFlightsOfStairsClimbedForADate(date) {
+    let specifiedDate = this.findDateForActivity(date);
+    let totalFlightsOfStairsClimbed = specifiedDate.reduce((totalStairs, day) => {
+      return totalStairs += day.flightsOfStairs
+    }, 0)
+    return Math.floor(totalFlightsOfStairsClimbed / specifiedDate.length)
   }
 
   findDateForActivity(specifiedDate) {

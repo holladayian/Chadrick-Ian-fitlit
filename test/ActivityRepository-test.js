@@ -34,7 +34,7 @@ describe('ActivityRepository', () => {
   })
 
   it('should calculate the number of stairs climbed for a specific date', () => {
-    expect(activityRepo.findAverageNumberOfStairsClimbedForADate("2019/06/15")).to.equal(2);
+    expect(activityRepo.findAverageFlightsOfStairsClimbedForADate("2019/06/15")).to.equal(19);
   })
 
 });
