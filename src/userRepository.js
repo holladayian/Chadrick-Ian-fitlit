@@ -1,6 +1,9 @@
+const userSamples = require('../data/userSamples');
+
+
 class UserRepository {
-  constructor(data) {
-    this.data = data;
+  constructor() {
+    this.data = userSamples;
   }
 
   findUserInfo(userID) {
