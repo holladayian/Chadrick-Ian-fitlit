@@ -45,6 +45,13 @@ class UserSleep {
       }
     })
   }
+  // findSleepWeek(startDate, endDate) {
+  //   return sleepSamples.filter(day => {
+  //     if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
+  //       return day;
+  //     }
+  //   })
+  // }
 
   // I think we should actually be able to remove the below method
 
