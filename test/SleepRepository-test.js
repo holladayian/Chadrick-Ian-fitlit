@@ -30,4 +30,8 @@ describe('SleepRepository', () => {
     expect(sleepRepo.findSleepQualitiesAverageGreaterThanThree("2019/06/15", "2019/06/22").length).to.equal(2);
   });
 
+  it('should check who slept the most for a day', () => {
+    expect(sleepRepo.whoSleptTheMost("2019/06/15")).to.equal(6.1);
+  });
+
 });

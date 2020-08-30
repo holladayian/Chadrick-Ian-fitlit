@@ -64,11 +64,15 @@ class SleepRepository {
         return averageSleepQualitiesForAWeek
       }
     })
-    console.log(yoohoosGreaterThanThree);
     return yoohoosGreaterThanThree;
-
   }
 
+  whoSleptTheMost(day) {
+    let sleepUsers = this.instantiateAllUsers();
+    let sleepDayForUsers = sleepUsers.map(sleepyDay => sleepyDay.findSpecificDaySleepHours(day));
+    let sleepWinner = Math.max(...sleepDayForUsers);
+    return sleepWinner
+  }
 }
 
 module.exports = SleepRepository
