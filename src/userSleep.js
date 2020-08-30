@@ -51,57 +51,19 @@ class UserSleep {
     return weeklySchedule.map(day => day.hoursSlept);
   }
 
-
   specificUserWeeklySleepQuality(startDate, endDate) {
     const weeklySchedule = this.findSleepWeek(startDate, endDate);
     return weeklySchedule.map(day => day.sleepQuality);
   }
 
-// the below method should only reduce for a specific user
-// the methodology for finding errbodysAverageSleepQuality should be in SleepRepository
-// copy this and use sleepSamples.reduce...
-// this method will no longer need a parameter
-
-
-
   averageUserSleepQuality(user) {
-    // here we can just this.userSleepInformation.reduce...
-    let information = user || sleepSamples;
-    // rename information
-    let totalSleepQuality = information.reduce((sum, sample) => {
+    let totalSleepQuality = this.userSleepInformation.reduce((sum, sample) => {
       sum += sample.sleepQuality;
       return sum;
     },0);
-    return Math.floor(totalSleepQuality/information.length);
+    return Math.floor(totalSleepQuality/this.userSleepInformation.length);
     // we might have to get rid of Math.floor, or use a method to get the 2nd decimal point
   }
-
-
-// the below method should live in SleepRepository
-
-  findAllUsersAverageSleepQuality(startDate, endDate) {
-    // we will need to get every user their own instance to access the weeklySleepquality method for each of them.
-    //sleepSamples.forEach(user => user.userid )
-    const weeklySchedule = this.findSleepWeek(startDate, endDate);
-
-    let allUserIDs = sleepSamples.map(user => user.userID);
-    let individualUserIDs = Array.from(new Set(allUserIDs));
-    let specificUsersWeek = individualUserIDs.map(specificUser => this.checkForSpecificUser(weeklySchedule, specificUser));
-    // console.log(weeklySchedule);
-    console.log(specificUsersWeek);
-    let someStuffIdkWhatItsGonnaBeCalled = specificUsersWeek.map(specificUsersWeek => this.averageUserSleepQuality(specificUsersWeek));
-    console.log(someStuffIdkWhatItsGonnaBeCalled);
-    return someStuffIdkWhatItsGonnaBeCalled;
-
-    // specificUsersWeek.map(specificUser => this.)
-    // return specificUsersWeek;
-
-    // we will need to use weekly sleep quality function to get the week sleepQuality values and divide by length of values array created, for each user.
-  }
-
-
-
-
 }
 
 
