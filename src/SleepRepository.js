@@ -67,17 +67,16 @@ class SleepRepository {
     return yoohoosGreaterThanThree;
   }
 
-  whoSleptTheMost(day) {
+  whoIsTheSleepOutlier(day, direction) {
     let sleepUsers = this.instantiateAllUsers();
     let sleepUsersDay = sleepUsers.map(sleepUser => sleepUser.findStartDateInfo(day));
     let listOfHoursSlept = sleepUsersDay.map(sleepUserHours => sleepUserHours.hoursSlept);
     let sleepWinner = sleepUsersDay.find(sleepUser => {
-      if (sleepUser.hoursSlept === Math.max(...listOfHoursSlept)) {
+      if (sleepUser.hoursSlept === Math[`${direction}`](...listOfHoursSlept)) {
         return sleepUser
       }
     })
     return sleepWinner
-
   }
 }
 

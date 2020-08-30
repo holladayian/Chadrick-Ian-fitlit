@@ -31,12 +31,23 @@ describe('SleepRepository', () => {
   });
 
   it('should check who slept the most for a day', () => {
-    expect(sleepRepo.whoSleptTheMost("2019/06/15")).to.deep.equal(
+    expect(sleepRepo.whoIsTheSleepOutlier("2019/06/15", 'max')).to.deep.equal(
       {
         "userID": 1,
         "date": "2019/06/15",
         "hoursSlept": 6.1,
         "sleepQuality": 2.2
+      }
+    );
+  });
+
+  it('should check who slept the most for a day', () => {
+    expect(sleepRepo.whoIsTheSleepOutlier("2019/06/15", 'min')).to.deep.equal(
+      {
+        "userID": 2,
+        "date": "2019/06/15",
+        "hoursSlept": 2.1,
+        "sleepQuality": 2.1
       }
     );
   });
