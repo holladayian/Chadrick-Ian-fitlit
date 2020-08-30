@@ -69,9 +69,15 @@ class SleepRepository {
 
   whoSleptTheMost(day) {
     let sleepUsers = this.instantiateAllUsers();
-    let sleepDayForUsers = sleepUsers.map(sleepyDay => sleepyDay.findSpecificDaySleepHours(day));
-    let sleepWinner = Math.max(...sleepDayForUsers);
+    let sleepUsersDay = sleepUsers.map(sleepUser => sleepUser.findStartDateInfo(day));
+    let listOfHoursSlept = sleepUsersDay.map(sleepUserHours => sleepUserHours.hoursSlept);
+    let sleepWinner = sleepUsersDay.find(sleepUser => {
+      if (sleepUser.hoursSlept === Math.max(...listOfHoursSlept)) {
+        return sleepUser
+      }
+    })
     return sleepWinner
+
   }
 }
 
