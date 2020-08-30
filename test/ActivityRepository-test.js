@@ -8,8 +8,6 @@ describe('ActivityRepository', () => {
   let activityRepo, userActivity;
   beforeEach( () => {
     activityRepo = new ActivityRepository();
-    // userActivity = new UserActivity();
-
   });
 
   it('should be a function', () => {

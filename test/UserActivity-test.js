@@ -5,7 +5,7 @@ const UserActivity = require('../src/UserActivity');
 describe('UserActivity', () => {
   let userActivity;
   beforeEach( () => {
-    userRepo = new UserActivity();
+    userActivity = new UserActivity();
   });
 
   it('should be a function', () => {

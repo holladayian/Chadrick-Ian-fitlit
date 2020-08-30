@@ -6,7 +6,6 @@ describe('UserRepository', () => {
   let userRepo;
   beforeEach( () => {
     userRepo = new UserRepository();
-
   });
 
   it('should be a function', () => {
