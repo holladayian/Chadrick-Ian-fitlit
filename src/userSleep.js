@@ -3,11 +3,7 @@ const moment = require('moment');
 
 class UserSleep {
   constructor(user) {
-    this.userSleepInformation = sleepSamples.filter(sample => {
-      if (user.id === sample['userID']) {
-        return sample;
-      }
-    });
+    this.userSleepInformation = user;
     // the functionality for the above should be in a SleepRepository class
 
   }

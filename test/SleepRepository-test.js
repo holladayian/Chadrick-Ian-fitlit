@@ -4,7 +4,7 @@ const expect = chai.expect;
 // const UserRepository = require('../src/UserRepository');
 const SleepRepository = require('../src/SleepRepository');
 const sleepSamples = require('../data/sleepSamples');
-
+const UserSleep = require('../src/userSleep');
 
 describe('SleepRepository', () => {
   let userRepo, userSleep;
@@ -20,6 +20,10 @@ describe('SleepRepository', () => {
   it('should return an array of sleep info for all users within a specified range of days', () => {
     // sleepRepo.findSleepWeek("2019/06/15", "2019/06/22");
     expect(sleepRepo.findSleepWeek("2019/06/15", "2019/06/22").length).to.equal(21);
+  });
+
+  it('should return an array of arrays containing each users sleep data and ', () => {
+    expect(sleepRepo.findAllUsersAverageSleepQuality("2019/06/15", "2019/06/22").length).to.equal(3);
   });
 
 });

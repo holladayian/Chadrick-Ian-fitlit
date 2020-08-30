@@ -1,15 +1,16 @@
 const chai = require('chai');
 const expect = chai.expect;
-const userSamples = require('../data/userSamples');
-const UserRepository = require('../src/UserRepository');
+// const userSamples = require('../data/userSamples');
+// const UserRepository = require('../src/UserRepository');
 const UserSleep = require('../src/UserSleep');
-
+const sleepSamples = require('../data/sleepSamples');
+const SleepRepository = require('../src/SleepRepository');
 
 describe('UserSleep', () => {
-  let userRepo, userSleep;
+  let sleepRepo, userSleep;
   beforeEach( () => {
-    userRepo = new UserRepository(userSamples);
-    userSleep = new UserSleep(userRepo.findUserInfo(1));
+    sleepRepo = new SleepRepository(sleepSamples)
+    userSleep = new UserSleep(sleepRepo.obtainUser(1));
   });
 
   it('should be a function', () => {
@@ -42,7 +43,7 @@ describe('UserSleep', () => {
 
   it('should return a users sleep quality for specified week', () => {
     userSleep.findSleepWeek();
-    // this should set the sleep week to a higher scoped variable 
+    // this should set the sleep week to a higher scoped variable
     expect(userSleep.specificUserWeeklySleepQuality("2019/06/15", "2019/06/22")).to.deep.equal([ 3.8, 3.7, 3.6, 3.5, 3.4, 3.3, 0.1 ]);
   });
 
