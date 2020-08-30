@@ -34,6 +34,14 @@ class ActivityRepository {
     return Math.floor(totalNumberOfStepsTaken / specifiedDate.length)
   }
 
+  findAverageMinutesActiveForADate(date) {
+    let specifiedDate = this.findDateForActivity(date);
+    let totalNumberOfStepsTaken = specifiedDate.reduce((totalSteps, day) => {
+      return totalSteps += day.minutesActive
+    }, 0)
+    return Math.floor(totalNumberOfStepsTaken / specifiedDate.length)
+  }
+
   findDateForActivity(specifiedDate) {
     return this.activityInformation.filter(day => day.date === specifiedDate)
   }
