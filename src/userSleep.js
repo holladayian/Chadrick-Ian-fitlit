@@ -39,44 +39,22 @@ class UserSleep {
   // there, we will filter with sleepSamples
 
   findSleepWeek(startDate, endDate) {
-    return sleepSamples.filter(day => {
+    return this.userSleepInformation.filter(day => {
       if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
         return day;
-      }
-    })
-  }
-  // findSleepWeek(startDate, endDate) {
-  //   return sleepSamples.filter(day => {
-  //     if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
-  //       return day;
-  //     }
-  //   })
-  // }
-
-  // I think we should actually be able to remove the below method
-
-  checkForSpecificUser(weeklySchedule, userID) {
-    return weeklySchedule.filter(specificUser => {
-      if(specificUser.userID === userID) {
-        return specificUser
       }
     })
   }
 
   specificUserWeeklySleepHours(startDate, endDate) {
     const weeklySchedule = this.findSleepWeek(startDate, endDate);
-    // the below code will be cleaned up, because we will only be dealing with one specific user in this class
-    const specificUserWeeklySchedule = this.checkForSpecificUser(weeklySchedule, this.userSleepInformation[0].userID);
-    return specificUserWeeklySchedule.map(day => day.hoursSlept);
+    return weeklySchedule.map(day => day.hoursSlept);
   }
 
 
   specificUserWeeklySleepQuality(startDate, endDate) {
     const weeklySchedule = this.findSleepWeek(startDate, endDate);
-    // the below code will be cleaned up, because we will only be dealing with one specific user in this class
-
-    const specificUserWeeklySchedule = this.checkForSpecificUser(weeklySchedule, this.userSleepInformation[0].userID);
-    return specificUserWeeklySchedule.map(day => day.sleepQuality);
+    return weeklySchedule.map(day => day.sleepQuality);
   }
 
 // the below method should only reduce for a specific user
