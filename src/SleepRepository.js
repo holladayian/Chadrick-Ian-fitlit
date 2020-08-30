@@ -36,18 +36,37 @@ class SleepRepository {
     //     return usersDays += sleepForADay
     //   }, 0);
     // }, 0)
-    let totalSleepQuality = this.sleepInformation.reduce((sleepQualityTotal, sleepQualityDay) => {
+    const totalSleepQuality = this.sleepInformation.reduce((sleepQualityTotal, sleepQualityDay) => {
       return sleepQualityTotal += sleepQualityDay.sleepQuality
     }, 0)
 
     // let usersWeeks = individualUserIDs.map(sleepUser => this.instantiateUserSleep(sleepUser));
+    let totalSleepQualityAverage = totalSleepQuality / this.sleepInformation.length;
 
-    console.log(totalSleepQuality / this.sleepInformation.length);
-
-    return totalSleepQuality;
+    return Math.floor(totalSleepQualityAverage);
 
     // specificUsersWeek.map(specificUser => this.)
     // return specificUsersWeek;
+  }
+
+  instantiateAllUsers() {
+    let allUserIDs = sleepSamples.map(user => user.userID);
+    let individualUserIDs = Array.from(new Set(allUserIDs));
+    return individualUserIDs.map(sleepUserID => this.instantiateUserSleep(sleepUserID));
+
+  }
+
+  findSleepQualitiesAverageGreaterThanThree(startDay, endDay) {
+    let sleepUsers = this.instantiateAllUsers();
+    let individualSleepUsersQualityAverageForAWeek = sleepUsers.map(sleepUser => sleepUser.userWeeklySleepQualityAverage(startDay, endDay));
+    let yoohoosGreaterThanThree = individualSleepUsersQualityAverageForAWeek.filter(averageSleepQualitiesForAWeek => {
+      if (averageSleepQualitiesForAWeek > 3) {
+        return averageSleepQualitiesForAWeek
+      }
+    })
+    console.log(yoohoosGreaterThanThree);
+    return yoohoosGreaterThanThree;
+
   }
 
 }

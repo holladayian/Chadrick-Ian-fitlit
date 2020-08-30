@@ -22,8 +22,12 @@ describe('SleepRepository', () => {
     expect(sleepRepo.findSleepWeek("2019/06/15", "2019/06/22").length).to.equal(21);
   });
 
-  it('should return an array of arrays containing each users sleep data and ', () => {
-    expect(sleepRepo.findAllUsersAverageSleepQuality().length).to.equal(3);
+  it('should return an average of all sleep quality', () => {
+    expect(sleepRepo.findAllUsersAverageSleepQuality()).to.equal(2);
+  });
+
+  it('should return an array individual sleep qualities', () => {
+    expect(sleepRepo.findSleepQualitiesAverageGreaterThanThree("2019/06/15", "2019/06/22").length).to.equal(2);
   });
 
 });

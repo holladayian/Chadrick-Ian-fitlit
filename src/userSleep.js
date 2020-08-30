@@ -4,8 +4,6 @@ const moment = require('moment');
 class UserSleep {
   constructor(user) {
     this.userSleepInformation = user;
-    // the functionality for the above should be in a SleepRepository class
-
   }
 
   findAllTimeHoursSleptAverage() {
@@ -34,10 +32,6 @@ class UserSleep {
     return this.userSleepInformation.find(datum => datum['date'] === date);
   }
 
-  // the below method should only deal with this.userSleepInformation, not sleepSamples
-  // theis method shoiuld be copied into SleepRepository
-  // there, we will filter with sleepSamples
-
   findSleepWeek(startDate, endDate) {
     return this.userSleepInformation.filter(day => {
       if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
@@ -54,6 +48,14 @@ class UserSleep {
   specificUserWeeklySleepQuality(startDate, endDate) {
     const weeklySchedule = this.findSleepWeek(startDate, endDate);
     return weeklySchedule.map(day => day.sleepQuality);
+  }
+
+  userWeeklySleepQualityAverage(startDate, endDate) {
+    const weeklySchedule = this.findSleepWeek(startDate, endDate);
+    let overallWeekQuality = weeklySchedule.reduce((totalWeekQuality, day) => {
+      return totalWeekQuality += day.sleepQuality
+    }, 0);
+    return overallWeekQuality/7
   }
 
   averageUserSleepQuality(user) {
