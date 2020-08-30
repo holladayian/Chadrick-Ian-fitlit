@@ -1,6 +1,6 @@
 const chai = require('chai');
 const expect = chai.expect;
-// const UserActivity = require('../src/UserActivity');
+const UserActivity = require('../src/UserActivity');
 const ActivityRepository = require('../src/ActivityRepository');
 
 
@@ -16,7 +16,7 @@ describe('ActivityRepository', () => {
     expect(ActivityRepository).to.be.a('function');
   });
 
-  it('shoiuld have a method to return user data', () => {
+  it('should have a method to return user data', () => {
     expect(activityRepo.obtainActivityUser(1)[0]).to.deep.equal(
       {
       "userID": 1,
@@ -25,6 +25,10 @@ describe('ActivityRepository', () => {
       "minutesActive": 140,
       "flightsOfStairs": 16
     })
+  });
+
+  it('instantiate a new UserActivity', () => {
+    expect(activityRepo.instantiateUserActivity(1)).to.be.an.instanceof(UserActivity)
   })
 
 });

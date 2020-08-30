@@ -14,6 +14,9 @@ class ActivityRepository {
       }
     })
   }
+  instantiateUserActivity(id) {
+    return new UserActivity(this.obtainActivityUser(id));
+  }
 }
 
 module.exports = ActivityRepository;
