@@ -36,10 +36,31 @@ class ActivityRepository {
 
   findAverageMinutesActiveForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
-    let totalNumberOfStepsTaken = specifiedDate.reduce((totalSteps, day) => {
-      return totalSteps += day.minutesActive
+    let totalMinutesActive = specifiedDate.reduce((totalMins, day) => {
+      return totalMins += day.minutesActive
     }, 0)
-    return Math.floor(totalNumberOfStepsTaken / specifiedDate.length)
+    return Math.floor(totalMinutesActive / specifiedDate.length)
+  }
+
+  findLaziestPersonForADate(date) {
+    let specifiedDate = this.findDateForActivity(date);
+    let listOfMinutesActive = specifiedDate.map(userActiveDay => userActiveDay.minutesActive);
+    let lazziestPerson = specifiedDate.find(usersDay => {
+      if(usersDay.minutesActive === Math.min(...listOfMinutesActive)) {
+        return usersDay
+      }
+    });
+    return lazziestPerson
+  //   let sleepUsersDay = sleepUsers.map(sleepUser => sleepUser.findStartDateInfo(day));
+  //   let listOfHoursSlept = sleepUsersDay.map(sleepUserHours => sleepUserHours.hoursSlept);
+  //   let sleepWinner = sleepUsersDay.find(sleepUser => {
+  //     if (sleepUser.hoursSlept === Math[`${direction}`](...listOfHoursSlept)) {
+  //       return sleepUser
+  //     }
+  //   })
+  //   return sleepWinner
+  // }
+
   }
 
   findDateForActivity(specifiedDate) {

@@ -44,4 +44,16 @@ describe('ActivityRepository', () => {
   it('should calculate the number of steps taken for a specific date', () => {
     expect(activityRepo.findAverageMinutesActiveForADate("2019/06/15")).to.equal(131);
   })
+
+  it('should check for the laziest person in a given day', () => {
+    expect(activityRepo.findLaziestPersonForADate("2019/06/15")).to.deep.equal(
+      {
+        "userID": 3,
+        "date": "2019/06/15",
+        "numSteps": 7402,
+        "minutesActive": 116,
+        "flightsOfStairs": 33
+      }
+    );
+  })
 });
