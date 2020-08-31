@@ -23,6 +23,33 @@ class UserActivity {
   userMinutesActive(date) {
     return this.findStartDateInfo(date).minutesActive;
   }
+  //Below: For a user, how many minutes active did they average for a given week (7 days)?
+  minutesActiveWeekAverage(startDate, endDate) {
+    const weeklySchedule = this.findSleepWeek(startDate, endDate);
+    let minutesActiveWeekTotal = weeklySchedule.reduce((totalWeekMinutesActive, day) => {
+      return totalWeekMinutesActive += day.minutesActive
+    }, 0);
+    return Math.floor(minutesActiveWeekTotal/7);
+  }
+  findSleepWeek(startDate, endDate) {
+    return this.userActivityInformation.filter(day => {
+      if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
+        return day;
+      }
+    })
+  }
+  //Below: For a user, did they reach their step goal for a given day (specified by a date)?
+  // findOutDayStepGoalReached() {
+  //
+  // }
+  //Below: For a user, find all the days where they exceeded their step goal
+  // findDaysStepGoalExceeded() {
+  //
+  // }
+  //Below: For a user, find their all-time stair climbing record
+  // findAllTimeStairRecord() {
+  //
+  // }
 }
 
 module.exports = UserActivity;
