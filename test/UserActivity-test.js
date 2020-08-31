@@ -22,4 +22,8 @@ describe('UserActivity', () => {
   it('should return miles walked for a specific day', () => {
     expect(userActivity.findMilesWalkedSpecificDay("2019/06/15")).to.equal(2.91);
   })
+
+  it('should return user minutes active for a specific day', () => {
+    expect(userActivity.userMinutesActive("2019/06/15")).to.equal(140);
+  })
 });

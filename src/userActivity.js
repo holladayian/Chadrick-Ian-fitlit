@@ -20,6 +20,9 @@ class UserActivity {
   findUserStride() {
     return new UserRepository().findUserInfo(this.userActivityInformation[0].userID).strideLength;
   }
+  userMinutesActive(date) {
+    return this.findStartDateInfo(date).minutesActive;
+  }
 }
 
 module.exports = UserActivity;
