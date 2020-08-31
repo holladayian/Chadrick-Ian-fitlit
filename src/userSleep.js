@@ -42,6 +42,7 @@ class UserSleep {
 
   specificUserWeeklySleepHours(startDate, endDate) {
     const weeklySchedule = this.findSleepWeek(startDate, endDate);
+    console.log(weeklySchedule);
     return weeklySchedule.map(day => day.hoursSlept);
   }
 
