@@ -40,17 +40,26 @@ class UserActivity {
       }
     })
   }
-  //Below: For a user, did they reach their step goal for a given day (specified by a date)?
+
   findOutDayStepGoalReached(date) {
     let userSteps = this.findStartDateInfo(date).numSteps;
     let userStepGoal = this.findUserStepGoal();
     return userSteps >= userStepGoal;
   }
-  
+
   findUserStepGoal() {
     return new UserRepository().findUserInfo(this.userActivityInformation[0].userID).dailyStepGoal;
   }
   //Below: For a user, find all the days where they exceeded their step goal
+  findAllDaysStepGoalExceeded() {
+    let userStepGoal = this.findUserStepGoal();
+    return this.userActivityInformation.filter(day => {
+      if (day.numSteps > userStepGoal) {
+        return day;
+      }
+    });
+  }
+
   //Below: For a user, find their all-time stair climbing record
   // findAllTimeStairRecord() {
   //

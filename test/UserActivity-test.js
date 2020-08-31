@@ -34,4 +34,8 @@ describe('UserActivity', () => {
   it('should find out user reached their step goal for specific day', () => {
     expect(userActivity.findOutDayStepGoalReached("2019/06/15")).to.equal(false);
   })
+
+  it('should return days where user exceeded their step goal', () => {
+    expect(userActivity.findAllDaysStepGoalExceeded()).to.deep.equal([]);
+  })
 });
