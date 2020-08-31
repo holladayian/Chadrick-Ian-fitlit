@@ -1,6 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 const UserRepository = require('../src/UserRepository');
+const User = require('../src/user');
 
 describe('UserRepository', () => {
   let userRepo;
@@ -51,4 +52,8 @@ describe('UserRepository', () => {
   it('should have a method to return the average step goal amongst all users', () => {
     expect(userRepo.findTotalAverageStepGoal()).to.equal(6666);
   });
+
+  it('should instantiate a user', () => {
+    expect(userRepo.instantiateUser(1)).to.be.an.instanceof(User);
+  })
 });

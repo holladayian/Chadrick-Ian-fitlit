@@ -1,4 +1,6 @@
 const userSamples = require('../data/userSamples');
+const User = require('../src/user');
+
 
 
 class UserRepository {
@@ -13,6 +15,10 @@ class UserRepository {
         return userDatum;
       }
     })
+  }
+
+  instantiateUser(userID) {
+    return new User(this.findUserInfo(userID));
   }
 
   findTotalAverageStepGoal() {
