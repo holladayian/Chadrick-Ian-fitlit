@@ -38,4 +38,18 @@ describe('UserActivity', () => {
   it('should return days where user exceeded their step goal', () => {
     expect(userActivity.findAllDaysStepGoalExceeded()).to.deep.equal([]);
   })
+
+  it('should return days where user exceeded their step goal', () => {
+    expect(userActivity.findAllDaysStepGoalExceeded()).to.deep.equal([]);
+  })
+
+  it('should return all time stair climbing record', () => {
+    expect(userActivity.findAllTimeStairRecord()).to.deep.equal({
+      "userID": 1,
+      "date": "2019/06/16",
+      "numSteps": 6637,
+      "minutesActive": 175,
+      "flightsOfStairs": 36
+    });
+  })
 });

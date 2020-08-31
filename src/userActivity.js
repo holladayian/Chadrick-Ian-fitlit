@@ -61,9 +61,17 @@ class UserActivity {
   }
 
   //Below: For a user, find their all-time stair climbing record
-  // findAllTimeStairRecord() {
-  //
-  // }
+  findAllTimeStairRecord() {
+    let findStairsRecords = this.userActivityInformation.map(day => day.flightsOfStairs);
+    let allTimeStairsRecord = this.userActivityInformation.find(day => {
+      if (day.flightsOfStairs === Math.max(...findStairsRecords))
+        return day;
+      });
+    console.log(allTimeStairsRecord);
+    return allTimeStairsRecord;
+    // this.userActivityInformation.find(day => day.
+    //
+  }
 }
 
 module.exports = UserActivity;
