@@ -30,4 +30,8 @@ describe('UserActivity', () => {
   it('should return users average minutes active for a specific week', () => {
     expect(userActivity.minutesActiveWeekAverage("2019/06/15", "2019/06/22")).to.equal(167);
   })
+
+  it('should find out user reached their step goal for specific day', () => {
+    expect(userActivity.findOutDayStepGoalReached("2019/06/15")).to.equal(false);
+  })
 });
