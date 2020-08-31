@@ -50,7 +50,7 @@ class UserActivity {
   findUserStepGoal() {
     return new UserRepository().findUserInfo(this.userActivityInformation[0].userID).dailyStepGoal;
   }
-  //Below: For a user, find all the days where they exceeded their step goal
+
   findAllDaysStepGoalExceeded() {
     let userStepGoal = this.findUserStepGoal();
     return this.userActivityInformation.filter(day => {
@@ -60,7 +60,6 @@ class UserActivity {
     });
   }
 
-  //Below: For a user, find their all-time stair climbing record
   findAllTimeStairRecord() {
     let findStairsRecords = this.userActivityInformation.map(day => day.flightsOfStairs);
     let allTimeStairsRecord = this.userActivityInformation.find(day => {
@@ -69,8 +68,6 @@ class UserActivity {
       });
     console.log(allTimeStairsRecord);
     return allTimeStairsRecord;
-    // this.userActivityInformation.find(day => day.
-    //
   }
 }
 
