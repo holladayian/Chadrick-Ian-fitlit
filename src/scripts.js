@@ -1,14 +1,41 @@
 // var moment = require('moment');
 let theSelectedDate;
+let userRepository;
+let hydrationRepository;
+let sleepRepository;
+let activityRepository;
+let welcomeParagraph = document.querySelector(".welcome-paragraph");
+let userInfoParagraph = document.querySelector(".user-info-paragraph");
+let compareUserActivityParagraph = document.querySelector(".compare-user-activity-paragraph");
+let weekActivityParagraph = document.querySelector(".week-activity-paragraph");
+let dailyWaterParagraph = document.querySelector(".daily-water-paragraph");
+let weekWaterParagraph = document.querySelector(".week-water-paragraph");
+let lastNightSleepParagraph = document.querySelector(".last-night-sleep-paragraph");
+let weekSleepParagraph = document.querySelector(".week-sleep-paragraph");
+let allTimeSleepParagraph = document.querySelector(".all-time-sleep-paragraph");
+let stepGoalVsAverageParagraph = document.querySelector(".step-goal-vs-average-paragraph");
+let dailyStepsParagraph = document.querySelector(".daily-steps-paragraph");
+let dailyMinutesActiveParagraph = document.querySelector(".daily-minutes-active-paragraph");
+let dailyDistanceWalkedParagraph = document.querySelector(".daily-distance-walked-paragraph");
+let weekActivityParagraph = document.querySelector(".week-activity-paragraph");
 
-
+window.onload(intantiateRepositories());
 window.addEventListener('click', findBeginningOfWeek);
+
 // -This JS file should call methods from your classes to retrieve information.
 //-There should not be any DOM manipulation within the User or UserRepository class files.
 // -To develop this dashboard, first choose a user at random - someone with a randomly generated name that speaks to you. On the dashboard for a user:
-//
+intantiateRepositories() {
+  userRepository = new UserRepository();
+  hydrationRepository = new HydrationRepository();
+  sleepRepository = new SleepRepository();
+  activityRepository = new ActivityRepository();
+}
 // -Create an info card on the dashboard with all of user’s info on the page
-//We need to creat a variable to hold the data from the individual user data. perhaps creating an empty variable of userData and creating a function that applies the user data to the the variable after an event which would require an event listener and relevant function.
+//We need to create a variable to hold the data from the individual user data. perhaps creating an empty variable of userData and creating a function that applies the user data to the the variable after an event which would require an event listener and relevant function.
+fillOutUserInfoCard() {
+
+}
 
 //Create placeholder tags and styles in html and css. We need to create querry selectors for this info card, a selector for id, name, address, email, strideLength, dailyStepGoal, and friends. an event listener for the parent of all their placeholders and a function that fills in the place holders.
 
