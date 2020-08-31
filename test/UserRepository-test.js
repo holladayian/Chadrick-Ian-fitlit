@@ -55,5 +55,5 @@ describe('UserRepository', () => {
 
   it('should instantiate a user', () => {
     expect(userRepo.instantiateUser(1)).to.be.an.instanceof(User);
-  })
+  });
 });

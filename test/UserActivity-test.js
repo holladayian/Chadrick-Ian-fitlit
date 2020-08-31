@@ -9,6 +9,8 @@ describe('UserActivity', () => {
     // userActivity = new UserActivity();
     activityRepo = new ActivityRepository();
     userActivity = activityRepo.instantiateUserActivity(1);
+    // activityRepo = new ActivityRepository();
+    // userActivity = activityRepo.instantiateUserActivity(1);
   });
 
   it('should be a function', () => {
@@ -16,7 +18,7 @@ describe('UserActivity', () => {
   });
 
   it('should return user stride length', () => {
-    expect(userActivity.findUserStride()).to.equal(4.3);
+    expect(userActivity.user.strideLength).to.equal(4.3);
   })
 
   it('should return miles walked for a specific day', () => {

@@ -1,5 +1,7 @@
 const UserActivity = require('../src/UserActivity');
 const activitySamples = require('../data/activitySamples');
+const UserRepository = require('../src/UserRepository');
+
 
 class ActivityRepository {
   constructor() {
@@ -15,8 +17,25 @@ class ActivityRepository {
   };
 
   instantiateUserActivity(id) {
-    return new UserActivity(this.obtainActivityUser(id));
+    return new UserActivity(this.obtainActivityUser(id), this.findUser(id));
   };
+
+//
+//
+
+  findUser(id) {
+    // console.log(this.obtainActivityUser(id));
+    return new UserRepository().instantiateUser(this.obtainActivityUser(id)[0].userID);
+  }
+
+
+// maybe don't need this
+  findUserStride(id) {
+    return this.findUser(id).strideLength
+  }
+
+//
+//
 
   findAverageFlightsOfStairsClimbedForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
