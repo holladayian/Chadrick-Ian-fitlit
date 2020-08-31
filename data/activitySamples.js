@@ -63,3 +63,5 @@ const activitySampleData = [
     "flightsOfStairs": 31
   }
 ];
+
+module.exports = activitySampleData;
