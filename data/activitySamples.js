@@ -61,6 +61,13 @@ const activitySampleData = [
     "numSteps": 6632,
     "minutesActive": 180,
     "flightsOfStairs": 31
+  },
+  {
+    "userID": 1,
+    "date": "2019/06/22",
+    "numSteps": 3000,
+    "minutesActive": 110,
+    "flightsOfStairs": 10
   }
 ];
 
