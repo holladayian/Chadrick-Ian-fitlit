@@ -1,5 +1,5 @@
 if (typeof(require) !== 'undefined') {
-  const UserRepository = require('../src/UserRepository');
+  // const UserRepository = require('../src/UserRepository');
   const moment = require('moment');
 }
 
@@ -9,8 +9,14 @@ class UserActivity {
     this.user = user.userData;
   }
 
+  findSpecificStepsWalked(date) {
+    return this.findStartDateInfo(date).numSteps;
+  }
+
   findMilesWalkedSpecificDay(date) {
-    let userSteps = this.findStartDateInfo(date).numSteps;
+    let userSteps =
+      findSpecificStepsWalked(date);
+      // this.findStartDateInfo(date).numSteps;
       let userMilesWalked = (userSteps * this.user.strideLength) / 5280;
     return Math.round(userMilesWalked * 100) / 100;
   }

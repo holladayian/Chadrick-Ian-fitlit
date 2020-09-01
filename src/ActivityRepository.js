@@ -6,8 +6,8 @@ if (typeof(require) !== 'undefined') {
 }
 
 class ActivityRepository {
-  constructor(userData) {
-    this.activityInformation = userData;
+  constructor(userStuff) {
+    this.activityInformation = userStuff;
   };
 
   obtainActivityUser(id) {
@@ -24,7 +24,7 @@ class ActivityRepository {
 
   findUser(id) {
     // console.log(this.obtainActivityUser(id));
-    return new UserRepository().instantiateUser(this.obtainActivityUser(id)[0].userID);
+    return userRepository.instantiateUser(this.obtainActivityUser(id)[0].userID);
   }
 
 // maybe don't need this

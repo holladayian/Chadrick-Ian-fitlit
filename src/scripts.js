@@ -45,12 +45,15 @@ function loadInfoForDashboard() {
   user = userRepository.instantiateUser(1);
   userSleep = sleepRepository.instantiateUserSleep(1);
   userHydro = hydrationRepository.instantiateHydroUser(1);
+  userActive = activityRepository.instantiateUserActivity(1);
   displayTodaysWaterConsumption();
   fillOutWelcome();
   compareSteps();
   displayWeeklyWaterConsumption();
   displaySleepDay();
   displaySleepWeek();
+  displayAllTimeSleepStuff();
+  displayLatestDaySteps();
   // intantiateRepositories();
   fillOutUserInfoCard();
 }
@@ -77,6 +80,7 @@ function fillOutUserInfoCard() {
 function fillOutWelcome() {
   welcomeParagraph.innerText = `Yooohoo ${user.userData.name}`
 }
+
 function compareSteps() {
   compareUserActivityParagraph.innerText = `your shit is ${user.userData.dailyStepGoal}, errbody else has an average of ${userRepository.findTotalAverageStepGoal()}`
 }
@@ -104,17 +108,11 @@ function displaySleepWeek() {
 function displayAllTimeSleepStuff() {
   allTimeSleepParagraph.innerText = `Your all time sleep quality average is ${userSleep.findAllTimeSleepQualityAverage()} out of 10, and your all time average sleep hours is ${userSleep.findAllTimeHoursSleptAverage()} hours`
 }
-// Sleep: it 3
-//
-// - Dashboard: Items to add to the dashboard:
-//
 
-//   - For a user, their sleep data over the course of the latest week (hours slept and quality of sleep)
-//create placeholder tags and style in html and css. create query selector for days of weeks, apply each value of the weekly hoursslept and qualityofSleep to particular spots in the placeholder, I would consider an iterator method to create html for the widget.
-
-//   - For a user, their all-time average sleep quality and all-time average number of hours slept
-//create placeholder tag and style in html and css. create query selector for average hours slept and average quality of sleep placeholders per the widget. create a listener for the widget, unless we can do one for all widgets on page load or a first click.
-
+function displayLatestDaySteps() {
+  // the below date will need to be passed in dynamically
+  dailyStepsParagraph.innerText = `You walked ${userActive.findSpecificStepsWalked("2019/06/15")} steps today. Well... There's always tomorrow!`;
+}
 // Activity: it4
 
 //
