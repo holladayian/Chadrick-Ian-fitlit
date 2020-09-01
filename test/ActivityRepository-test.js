@@ -55,5 +55,9 @@ describe('ActivityRepository', () => {
         "flightsOfStairs": 33
       }
     )
+  });
+
+  it('should find a user\'s friends', () => {
+    expect(activityRepo.findFriends(1).length).to.equal(2);
   })
 });

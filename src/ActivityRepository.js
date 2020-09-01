@@ -24,8 +24,11 @@ class ActivityRepository {
 //
 
   findUser(id) {
-    // console.log(this.obtainActivityUser(id));
     return new UserRepository().instantiateUser(this.obtainActivityUser(id)[0].userID);
+  }
+
+  findFriends(id) {
+    return this.findUser(id).userData.friends.map(friendID => this.instantiateUserActivity(friendID))
   }
 
 
