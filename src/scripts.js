@@ -19,12 +19,12 @@ const cardEmail = document.querySelector(".card-email");
 const cardStrideLength = document.querySelector(".card-stride-length");
 const cardDailyStepGoal = document.querySelector(".card-daily-step-goal");
 const dailyWaterParagraph = document.querySelector(".daily-water-paragraph");
+const weekWaterParagraph = document.querySelector(".week-water-paragraph");
 
 // const cardFriends = document.querySelector(".card-friends");
 
 const compareUserActivityParagraph = document.querySelector(".compare-user-activity-paragraph");
 const weekActivityParagraph = document.querySelector(".week-activity-paragraph");
-const weekWaterParagraph = document.querySelector(".week-water-paragraph");
 const lastNightSleepParagraph = document.querySelector(".last-night-sleep-paragraph");
 const weekSleepParagraph = document.querySelector(".week-sleep-paragraph");
 const allTimeSleepParagraph = document.querySelector(".all-time-sleep-paragraph");
@@ -49,6 +49,7 @@ function loadInfoForDashboard() {
   fillOutWelcome();
   compareSteps();
   displayWeeklyWaterConsumption();
+  displaySleepDay();
   // intantiateRepositories();
   fillOutUserInfoCard();
 }
@@ -85,16 +86,17 @@ function displayTodaysWaterConsumption() {
 }
 
 function displayWeeklyWaterConsumption() {
+  // the below date will need to be passed in dynamically
+// We might also consider throuwing in a forEach to display each day
   weekWaterParagraph.innerText = `The whatar consumption for a week has been ${userHydro.weeklyHydration("2019/06/15", "2019/06/22")}`
 }
 
-// Hydration: it2
-//
+function displaySleepDay() {
+  // the below date will need to be passed in dynamically
 
-//   - A display to show much water they have consumed each day over the course of the latest week
-//create placeholder tag and style in html and css. create query selector for days of weeks, apply each value of the weekly numounces to particular spots in the placeholder, I would consider an iterator method to create html for the widget.
+  lastNightSleepParagraph.innerText = `Last night ya slept ${userSleep.findSpecificDaySleepHours("2019/06/15")} hours!`
+}
 
-// - Keep the displays simple for now and make them fancy later. Do not use and additional 3rd-party libraries to display information on the page unless you get instructor approval first. This rule goes for other iterations as well.
 
 // Sleep: it 3
 //
