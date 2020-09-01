@@ -1,5 +1,7 @@
-const sleepSamples = require('../data/sleepSamples');
-const moment = require('moment');
+if (typeof(require) !== 'undefined') {
+  const sleepSamples = require('../data/sleepSamples');
+  const moment = require('moment');
+}
 
 class UserSleep {
   constructor(user) {
@@ -68,6 +70,6 @@ class UserSleep {
   }
 }
 
-
-
-module.exports = UserSleep;
+if (typeof(module) !== 'undefined') {
+  module.exports = UserSleep;
+}

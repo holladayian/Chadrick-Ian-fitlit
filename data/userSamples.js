@@ -42,4 +42,6 @@ const userSampleData = [
   }
 ];
 
-module.exports = userSampleData;
+if (typeof(module) !== 'undefined') {
+  module.exports = userSampleData;
+}

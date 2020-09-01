@@ -1,42 +1,72 @@
-// var moment = require('moment');
-let theSelectedDate;
-let userRepository;
-let hydrationRepository;
-let sleepRepository;
-let activityRepository;
-let welcomeParagraph = document.querySelector(".welcome-paragraph");
-let userInfoParagraph = document.querySelector(".user-info-paragraph");
-let compareUserActivityParagraph = document.querySelector(".compare-user-activity-paragraph");
-let weekActivityParagraph = document.querySelector(".week-activity-paragraph");
-let dailyWaterParagraph = document.querySelector(".daily-water-paragraph");
-let weekWaterParagraph = document.querySelector(".week-water-paragraph");
-let lastNightSleepParagraph = document.querySelector(".last-night-sleep-paragraph");
-let weekSleepParagraph = document.querySelector(".week-sleep-paragraph");
-let allTimeSleepParagraph = document.querySelector(".all-time-sleep-paragraph");
-let stepGoalVsAverageParagraph = document.querySelector(".step-goal-vs-average-paragraph");
-let dailyStepsParagraph = document.querySelector(".daily-steps-paragraph");
-let dailyMinutesActiveParagraph = document.querySelector(".daily-minutes-active-paragraph");
-let dailyDistanceWalkedParagraph = document.querySelector(".daily-distance-walked-paragraph");
-let weekActivityParagraph = document.querySelector(".week-activity-paragraph");
+if (typeof(require) !== 'undefined') {
+  var moment = require('moment');
+  const UserRepository = require('../src/userRepository');
+  const HydrationRepository = require('../src/HydrationRepository');
+  const SleepRepository = require('../src/SleepRepository');
+  const ActivityRepository = require('../src/ActivityRepository');
+}
 
-window.onload(intantiateRepositories());
+// let theSelectedDate;
+const userRepository = new UserRepository(userData);
+let user;
+const hydrationRepository = new HydrationRepository(hydrationData);
+const sleepRepository = new SleepRepository(sleepData);
+const activityRepository = new ActivityRepository(activityData);
+const welcomeParagraph = document.querySelector(".welcome-paragraph");
+const cardName = document.querySelector(".card-name");
+const cardAddress = document.querySelector(".card-address");
+const cardEmail = document.querySelector(".card-email");
+const cardStrideLength = document.querySelector(".card-stride-length");
+const cardDailyStepGoal = document.querySelector(".card-daily-step-goal");
+const cardFriends = document.querySelector(".card-friends");
+const compareUserActivityParagraph = document.querySelector(".compare-user-activity-paragraph");
+const weekActivityParagraph = document.querySelector(".week-activity-paragraph");
+const dailyWaterParagraph = document.querySelector(".daily-water-paragraph");
+const weekWaterParagraph = document.querySelector(".week-water-paragraph");
+const lastNightSleepParagraph = document.querySelector(".last-night-sleep-paragraph");
+const weekSleepParagraph = document.querySelector(".week-sleep-paragraph");
+const allTimeSleepParagraph = document.querySelector(".all-time-sleep-paragraph");
+const stepGoalVsAverageParagraph = document.querySelector(".step-goal-vs-average-paragraph");
+const dailyStepsParagraph = document.querySelector(".daily-steps-paragraph");
+const dailyMinutesActiveParagraph = document.querySelector(".daily-minutes-active-paragraph");
+const dailyDistanceWalkedParagraph = document.querySelector(".daily-distance-walked-paragraph");
+
+
+window.onload(loadInfoForDashboard());
 window.addEventListener('click', findBeginningOfWeek);
 
 // -This JS file should call methods from your classes to retrieve information.
 //-There should not be any DOM manipulation within the User or UserRepository class files.
 // -To develop this dashboard, first choose a user at random - someone with a randomly generated name that speaks to you. On the dashboard for a user:
-intantiateRepositories() {
-  userRepository = new UserRepository();
-  hydrationRepository = new HydrationRepository();
-  sleepRepository = new SleepRepository();
-  activityRepository = new ActivityRepository();
+function loadInfoForDashboard() {
+  user = userRepository.instantiateUser(1);
+  fillOutWelcome();
+  // intantiateRepositories();
+  fillOutUserInfoCard();
 }
+// function intantiateRepositories() {
+//   userRepository = new UserRepository();
+//   hydrationRepository = new HydrationRepository();
+//   sleepRepository = new SleepRepository();
+//   activityRepository = new ActivityRepository();
+//   user = userRepository.instantiateUser(1);
+//   console.log(user);
+// }
 // -Create an info card on the dashboard with all of user’s info on the page
 //We need to create a variable to hold the data from the individual user data. perhaps creating an empty variable of userData and creating a function that applies the user data to the the variable after an event which would require an event listener and relevant function.
-fillOutUserInfoCard() {
-
+//id: userData.id,
+function fillOutUserInfoCard() {
+  cardName.innerText=  `${user.userData.name}`;
+  cardAddress.innerText = `${user.userData.address}`;
+  cardEmail.innerText = `${user.userData.email}`;
+  cardStrideLength.innerText = `${user.userData.strideLength}`;
+  cardDailyStepGoal.innerText = `${user.userData.dailyStepGoal}`;
+  cardFriends.innerText = `${user.userData.friends}`;
 }
 
+function fillOutWelcome() {
+  welcomeParagraph.innerText = `Yooohoo ${user.userData.name}`
+}
 //Create placeholder tags and styles in html and css. We need to create querry selectors for this info card, a selector for id, name, address, email, strideLength, dailyStepGoal, and friends. an event listener for the parent of all their placeholders and a function that fills in the place holders.
 
 // -Display their first name somewhere prominently on the page to welcome them

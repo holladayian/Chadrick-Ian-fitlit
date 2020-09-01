@@ -1,11 +1,13 @@
-const UserActivity = require('../src/UserActivity');
-const activitySamples = require('../data/activitySamples');
-const UserRepository = require('../src/UserRepository');
 
+if (typeof(require) !== 'undefined') {
+  const UserActivity = require('../src/UserActivity');
+  const activitySamples = require('../data/activitySamples');
+  const UserRepository = require('../src/UserRepository');
+}
 
 class ActivityRepository {
-  constructor() {
-    this.activityInformation = activitySamples;
+  constructor(userData) {
+    this.activityInformation = userData;
   };
 
   obtainActivityUser(id) {
@@ -70,4 +72,6 @@ class ActivityRepository {
   }
 };
 
-module.exports = ActivityRepository;
+if (typeof(module) !== 'undefined') {
+  module.exports = ActivityRepository;
+}

@@ -1,5 +1,7 @@
-const moment = require('moment');
-const UserRepository = require('../src/UserRepository');
+if (typeof(require) !== 'undefined') {
+  const UserRepository = require('../src/UserRepository');
+  const moment = require('moment');
+}
 
 class UserActivity {
   constructor(userInfo, user) {
@@ -42,7 +44,7 @@ class UserActivity {
     let userSteps = this.findStartDateInfo(date).numSteps;
     return userSteps >= this.user.dailyStepGoal;
   }
-  
+
   findAllDaysStepGoalExceeded() {
     let userStepGoal = this.user.dailyStepGoal;
     return this.userActivityInformation.filter(day => {
@@ -62,4 +64,6 @@ class UserActivity {
   }
 }
 
-module.exports = UserActivity;
+if (typeof(module) !== 'undefined') {
+  module.exports = UserActivity;
+}

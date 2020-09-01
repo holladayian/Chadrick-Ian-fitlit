@@ -20,9 +20,6 @@ body {
 }
 
 .widget {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 5px;
   background-color: white;
   border-radius: 5px;
@@ -36,6 +33,16 @@ body {
 .user-info-widget {
   grid-column: 2 / 4;
   grid-row: 1 / 2;
+  display: grid;
+  grid-template-columns: 1 , 1;
+}
+
+.card-left {
+  grid-column: 1 / 2;
+}
+
+.card-right {
+  grid-column: 2 / 3;
 }
 
 .compare-user-activity-to-all-widget {
