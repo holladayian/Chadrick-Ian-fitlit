@@ -1,13 +1,13 @@
 class User {
-  constructor(userData) {
+  constructor(userInfo) {
     this.userData = {
-      id: userData.id,
-      name: userData.name,
-      address: userData.address,
-      email: userData.email,
-      strideLength: userData.strideLength,
-      dailyStepGoal: userData.dailyStepGoal,
-      friends: userData.friends
+      id: userInfo.id,
+      name: userInfo.name,
+      address: userInfo.address,
+      email: userInfo.email,
+      strideLength: userInfo.strideLength,
+      dailyStepGoal: userInfo.dailyStepGoal,
+      friends: userInfo.friends
     };
   }
 

@@ -1,5 +1,5 @@
 if (typeof(require) !== 'undefined') {
-  const UserRepository = require('../src/UserRepository');
+  const UserRepository = require('../src/userRepository');
   const moment = require('moment');
 }
 
@@ -18,7 +18,7 @@ class UserActivity {
   findStepsWalkedSpecificDay(Date) {
     let userSteps = this.findStartDateInfo(date).numSteps;
   }
-  
+
   findStartDateInfo(date) {
     return this.userActivityInformation.find(datum => datum['date'] === date);
   }

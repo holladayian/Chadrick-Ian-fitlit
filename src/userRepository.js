@@ -1,11 +1,12 @@
-if (typeof(require) !== 'undefined') {
-  const users = require('../data/users');
-  const User = require('../src/user');
-}
+// if (typeof(require) !== 'undefined') {
+//   const userSamples = require('../data/userSamples');
+// }
+// // I dont think this require conditional is working how we though it should
+// const User = require('../src/user');
 
 class UserRepository {
-  constructor(users) {
-    this.data = users;
+  constructor(userList) {
+    this.data = userList;
   }
 
   findUserInfo(userID) {

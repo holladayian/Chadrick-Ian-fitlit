@@ -1,14 +1,16 @@
 
 if (typeof(require) !== 'undefined') {
-  const UserActivity = require('../src/UserActivity');
+  // const activitySamples = require('../data/activitySamples');
+  const UserActivity = require('../src/userActivity');
+  const UserRepository = require('../src/userRepository');
   const activitySamples = require('../data/activitySamples');
-  const UserRepository = require('../src/UserRepository');
+  const userData = require('../data/users');
 }
 
 class ActivityRepository {
-  constructor(userData) {
-    this.activityInformation = userData;
-  };
+  constructor(userInfo) {
+    this.activityInformation = userInfo;
+  }
 
   obtainActivityUser(id) {
     return this.activityInformation.filter(userInfo => {
@@ -16,18 +18,23 @@ class ActivityRepository {
         return userInfo;
       }
     })
-  };
+  }
 
   instantiateUserActivity(id) {
     return new UserActivity(this.obtainActivityUser(id), this.findUser(id));
-  };
+  }
 
   findUser(id) {
-    return new UserRepository().instantiateUser(this.obtainActivityUser(id)[0].userID);
+    return userRepository.instantiateUser(this.obtainActivityUser(id)[0].userID);
+    // return new UserRepository(userData).instantiateUser(this.obtainActivityUser(id)[0].userID);
   }
 
   findFriends(id) {
-    return this.findUser(id).userData.friends.map(friendID => this.instantiateUserActivity(friendID))
+    let friendlyBoys = [];
+     this.findUser(id).userData.friends.forEach(friendID => {
+      friendlyBoys.push(this.instantiateUserActivity(friendID))
+    })
+    return friendlyBoys
   }
 
   // addUserToFriendList(id) {
@@ -52,7 +59,7 @@ class ActivityRepository {
       return totalStairs += day.flightsOfStairs;
     }, 0)
     return Math.floor(totalFlightsOfStairsClimbed / specifiedDate.length)
-  };
+  }
 
   //We may not want average here
   findAverageNumberOfStepsTakenForADate(date) {
@@ -61,7 +68,7 @@ class ActivityRepository {
       return totalSteps += day.numSteps;
     }, 0)
     return Math.floor(totalNumberOfStepsTaken / specifiedDate.length)
-  };
+  }
 
   //We may not want average here
   findAverageMinutesActiveForADate(date) {
@@ -70,7 +77,7 @@ class ActivityRepository {
       return totalMins += day.minutesActive;
     }, 0)
     return Math.floor(totalMinutesActive / specifiedDate.length);
-  };
+  }
 
   findLaziestPersonForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
@@ -81,12 +88,12 @@ class ActivityRepository {
       }
     });
     return lazziestPerson;
-  };
+  }
 
   findDateForActivity(specifiedDate) {
     return this.activityInformation.filter(day => day.date === specifiedDate);
   }
-};
+}
 
 if (typeof(module) !== 'undefined') {
   module.exports = ActivityRepository;
