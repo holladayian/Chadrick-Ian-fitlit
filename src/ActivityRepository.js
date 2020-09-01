@@ -1,11 +1,13 @@
-const UserActivity = require('../src/UserActivity');
-const activitySamples = require('../data/activitySamples');
-const UserRepository = require('../src/UserRepository');
 
+if (typeof(require) !== 'undefined') {
+  const UserActivity = require('../src/UserActivity');
+  const activitySamples = require('../data/activitySamples');
+  const UserRepository = require('../src/UserRepository');
+}
 
 class ActivityRepository {
-  constructor() {
-    this.activityInformation = activitySamples;
+  constructor(userData) {
+    this.activityInformation = userData;
   };
 
   obtainActivityUser(id) {
@@ -19,9 +21,6 @@ class ActivityRepository {
   instantiateUserActivity(id) {
     return new UserActivity(this.obtainActivityUser(id), this.findUser(id));
   };
-
-//
-//
 
   findUser(id) {
     return new UserRepository().instantiateUser(this.obtainActivityUser(id)[0].userID);
@@ -55,6 +54,7 @@ class ActivityRepository {
     return Math.floor(totalFlightsOfStairsClimbed / specifiedDate.length)
   };
 
+  //We may not want average here
   findAverageNumberOfStepsTakenForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
     let totalNumberOfStepsTaken = specifiedDate.reduce((totalSteps, day) => {
@@ -63,6 +63,7 @@ class ActivityRepository {
     return Math.floor(totalNumberOfStepsTaken / specifiedDate.length)
   };
 
+  //We may not want average here
   findAverageMinutesActiveForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
     let totalMinutesActive = specifiedDate.reduce((totalMins, day) => {
@@ -87,4 +88,6 @@ class ActivityRepository {
   }
 };
 
-module.exports = ActivityRepository;
+if (typeof(module) !== 'undefined') {
+  module.exports = ActivityRepository;
+}

@@ -71,4 +71,6 @@ const activitySampleData = [
   }
 ];
 
-module.exports = activitySampleData;
+if (typeof(module) !== 'undefined') {
+  module.exports = activitySampleData;
+}

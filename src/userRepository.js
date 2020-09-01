@@ -1,11 +1,11 @@
-const userSamples = require('../data/userSamples');
-const User = require('../src/user');
-
-
+if (typeof(require) !== 'undefined') {
+  const users = require('../data/users');
+  const User = require('../src/user');
+}
 
 class UserRepository {
-  constructor() {
-    this.data = userSamples;
+  constructor(users) {
+    this.data = users;
   }
 
   findUserInfo(userID) {
@@ -29,6 +29,6 @@ class UserRepository {
   }
 }
 
-
-
-module.exports = UserRepository;
+if (typeof(module) !== 'undefined') {
+  module.exports = UserRepository;
+}

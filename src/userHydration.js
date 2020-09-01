@@ -1,4 +1,6 @@
-const moment = require('moment');
+if (typeof(require) !== 'undefined') {
+  const moment = require('moment');
+}
 
 class UserHydration {
   constructor(user) {
@@ -34,4 +36,6 @@ class UserHydration {
   }
 }
 
-module.exports = UserHydration;
+if (typeof(module) !== 'undefined') {
+  module.exports = UserHydration;
+}

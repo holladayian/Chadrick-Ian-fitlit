@@ -1,10 +1,13 @@
-const sleepSamples = require('../data/sleepSamples');
-const UserSleep = require('../src/userSleep');
-const moment = require('moment');
+if (typeof(require) !== 'undefined') {
+  const sleepSamples = require('../data/sleepSamples');
+  const UserSleep = require('../src/userSleep');
+  const moment = require('moment');
+}
+
 
 class SleepRepository {
-  constructor() {
-    this.sleepInformation = sleepSamples;
+  constructor(userData) {
+    this.sleepInformation = userData;
   }
   findSleepWeek(startDate, endDate) {
     return sleepSamples.filter(day => {
@@ -80,4 +83,6 @@ class SleepRepository {
   }
 }
 
-module.exports = SleepRepository
+if (typeof(module) !== 'undefined') {
+  module.exports = SleepRepository;
+}

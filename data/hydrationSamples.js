@@ -51,4 +51,6 @@ const hydrationSampleData = [
   }
 ];
 
-module.exports = hydrationSampleData;
+if (typeof(module) !== 'undefined') {
+  module.exports = hydrationSampleData;
+}
