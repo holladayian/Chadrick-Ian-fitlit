@@ -18,12 +18,12 @@ const cardAddress = document.querySelector(".card-address");
 const cardEmail = document.querySelector(".card-email");
 const cardStrideLength = document.querySelector(".card-stride-length");
 const cardDailyStepGoal = document.querySelector(".card-daily-step-goal");
+const dailyWaterParagraph = document.querySelector(".daily-water-paragraph");
 
 // const cardFriends = document.querySelector(".card-friends");
 
 const compareUserActivityParagraph = document.querySelector(".compare-user-activity-paragraph");
 const weekActivityParagraph = document.querySelector(".week-activity-paragraph");
-const dailyWaterParagraph = document.querySelector(".daily-water-paragraph");
 const weekWaterParagraph = document.querySelector(".week-water-paragraph");
 const lastNightSleepParagraph = document.querySelector(".last-night-sleep-paragraph");
 const weekSleepParagraph = document.querySelector(".week-sleep-paragraph");
@@ -41,9 +41,14 @@ window.addEventListener('click', findBeginningOfWeek);
 //-There should not be any DOM manipulation within the User or UserRepository class files.
 // -To develop this dashboard, first choose a user at random - someone with a randomly generated name that speaks to you. On the dashboard for a user:
 function loadInfoForDashboard() {
+  // the "1" below needs to be dynamic
   user = userRepository.instantiateUser(1);
+  userSleep = sleepRepository.instantiateUserSleep(1);
+  userHydro = hydrationRepository.instantiateHydroUser(1);
+  displayTodaysWaterConsumption();
   fillOutWelcome();
   compareSteps();
+  displayWeeklyWaterConsumption();
   // intantiateRepositories();
   fillOutUserInfoCard();
 }
@@ -74,13 +79,17 @@ function compareSteps() {
   compareUserActivityParagraph.innerText = `your shit is ${user.userData.dailyStepGoal}, errbody else has an average of ${userRepository.findTotalAverageStepGoal()}`
 }
 
-// -For a specific user, display how their step goal compares to the average step goal amongst all users (this display should not be hard-coded)
-// Create placeholder tags and styles in html and css. create querry selectors for for the user step goal and average step goal. create relevent event listener and functions.
+function displayTodaysWaterConsumption() {
+  // the below date will need to be passed in dynamically
+  dailyWaterParagraph.innerText = `Ya don drank ${userHydro.findSpecificDayHydration("2019/06/15")} ounces today`
+}
+
+function displayWeeklyWaterConsumption() {
+  weekWaterParagraph.innerText = `The whatar consumption for a week has been ${userHydro.weeklyHydration("2019/06/15", "2019/06/22")}`
+}
 
 // Hydration: it2
 //
-//   - A display to show how much water they have consumed today (these displays are often called “widgets” in the FE tech world)
-// Create placeholder tag and style in html and css. create querry selectors to numounces for day value to placeholder. Create necessary event listener and function to apply to dom.
 
 //   - A display to show much water they have consumed each day over the course of the latest week
 //create placeholder tag and style in html and css. create query selector for days of weeks, apply each value of the weekly numounces to particular spots in the placeholder, I would consider an iterator method to create html for the widget.
