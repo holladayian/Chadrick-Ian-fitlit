@@ -60,4 +60,10 @@ describe('ActivityRepository', () => {
   it('should find a user\'s friends', () => {
     expect(activityRepo.findFriends(1).length).to.equal(2);
   })
+  //
+  // it('should find friends step counts for a week', () => {
+  //   expect(activityRepo.findFriendStepCountForAWeek(1).length).to.equal(3);
+  // })
+
+  // to find this, I think we can just activityRepo.findFriends(1).map(friend => friend.findTotalStepsForAWeek(startDate, endDate)) in scripts
 });

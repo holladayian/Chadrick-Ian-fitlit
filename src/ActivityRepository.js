@@ -31,11 +31,18 @@ class ActivityRepository {
     return this.findUser(id).userData.friends.map(friendID => this.instantiateUserActivity(friendID))
   }
 
+  // addUserToFriendList(id) {
+  //   // console.log(this.instantiateUserActivity(id));
+  //   // console.log(this.findFriends(id));
+  //   let allBuds = this.findFriends(id).unshift(this.instantiateUserActivity(id));
+  //   return allBuds
+  // }
+
 
 // maybe don't need this
-  findUserStride(id) {
-    return this.findUser(id).strideLength
-  }
+  // findUserStride(id) {
+  //   return this.findUser(id).strideLength
+  // }
 
 //
 //

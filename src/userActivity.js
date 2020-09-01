@@ -16,7 +16,6 @@ class UserActivity {
   findStartDateInfo(date) {
     return this.userActivityInformation.find(datum => datum['date'] === date);
   }
-// this below functionality needs to be accessed higher up the scope chain
 
   userMinutesActive(date) {
     return this.findStartDateInfo(date).minutesActive;
@@ -35,6 +34,13 @@ class UserActivity {
       if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
         return day;
       }
+    })
+  }
+
+  findTotalStepsForAWeek(startDate, endDate) {
+    let week = this.findActivityWeek(startDate, endDate);
+    week.filter((totalSteps, day) => {
+      return totalSteps += day.numSteps
     })
   }
 
