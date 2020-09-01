@@ -18,7 +18,9 @@ const cardAddress = document.querySelector(".card-address");
 const cardEmail = document.querySelector(".card-email");
 const cardStrideLength = document.querySelector(".card-stride-length");
 const cardDailyStepGoal = document.querySelector(".card-daily-step-goal");
-const cardFriends = document.querySelector(".card-friends");
+
+// const cardFriends = document.querySelector(".card-friends");
+
 const compareUserActivityParagraph = document.querySelector(".compare-user-activity-paragraph");
 const weekActivityParagraph = document.querySelector(".week-activity-paragraph");
 const dailyWaterParagraph = document.querySelector(".daily-water-paragraph");
@@ -41,6 +43,7 @@ window.addEventListener('click', findBeginningOfWeek);
 function loadInfoForDashboard() {
   user = userRepository.instantiateUser(1);
   fillOutWelcome();
+  compareSteps();
   // intantiateRepositories();
   fillOutUserInfoCard();
 }
@@ -61,16 +64,15 @@ function fillOutUserInfoCard() {
   cardEmail.innerText = `${user.userData.email}`;
   cardStrideLength.innerText = `${user.userData.strideLength}`;
   cardDailyStepGoal.innerText = `${user.userData.dailyStepGoal}`;
-  cardFriends.innerText = `${user.userData.friends}`;
+  // cardFriends.innerText = `${user.userData.friends}`;
 }
 
 function fillOutWelcome() {
   welcomeParagraph.innerText = `Yooohoo ${user.userData.name}`
 }
-//Create placeholder tags and styles in html and css. We need to create querry selectors for this info card, a selector for id, name, address, email, strideLength, dailyStepGoal, and friends. an event listener for the parent of all their placeholders and a function that fills in the place holders.
-
-// -Display their first name somewhere prominently on the page to welcome them
-// Create the placeholder tag and style within html and css. Create a querry selector for this name and within the function mentioned above place the name in that prominent selector location.
+function compareSteps() {
+  compareUserActivityParagraph.innerText = `your shit is ${user.userData.dailyStepGoal}, errbody else has an average of ${userRepository.findTotalAverageStepGoal()}`
+}
 
 // -For a specific user, display how their step goal compares to the average step goal amongst all users (this display should not be hard-coded)
 // Create placeholder tags and styles in html and css. create querry selectors for for the user step goal and average step goal. create relevent event listener and functions.
