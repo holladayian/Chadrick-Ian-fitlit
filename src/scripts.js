@@ -101,7 +101,9 @@ function displaySleepWeek() {
   weekSleepParagraph.innerText = `This week you slept ${userSleep.specificUserWeeklySleepHours("2019/06/15", "2019/06/22")}`
 }
 
-
+function displayAllTimeSleepStuff() {
+  allTimeSleepParagraph.innerText = `Your all time sleep quality average is ${userSleep.findAllTimeSleepQualityAverage()} out of 10, and your all time average sleep hours is ${userSleep.findAllTimeHoursSleptAverage()} hours`
+}
 // Sleep: it 3
 //
 // - Dashboard: Items to add to the dashboard:
