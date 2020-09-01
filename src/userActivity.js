@@ -15,7 +15,7 @@ class UserActivity {
 
   findMilesWalkedSpecificDay(date) {
     let userSteps =
-      findSpecificStepsWalked(date);
+      this.findSpecificStepsWalked(date);
       // this.findStartDateInfo(date).numSteps;
       let userMilesWalked = (userSteps * this.user.strideLength) / 5280;
     return Math.round(userMilesWalked * 100) / 100;

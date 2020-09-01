@@ -54,6 +54,8 @@ function loadInfoForDashboard() {
   displaySleepWeek();
   displayAllTimeSleepStuff();
   displayLatestDaySteps();
+  displayLatestMinutesActive();
+  displayLatestMilesWalked();
   // intantiateRepositories();
   fillOutUserInfoCard();
 }
@@ -113,14 +115,14 @@ function displayLatestDaySteps() {
   // the below date will need to be passed in dynamically
   dailyStepsParagraph.innerText = `You walked ${userActive.findSpecificStepsWalked("2019/06/15")} steps today. Well... There's always tomorrow!`;
 }
-// Activity: it4
 
-//
-//   -For a user, the number of steps for the latest day
-//Create placeholder tag and style in html and css. create querry selectors to steps for day value to placeholder. Create necessary event listener and function to apply to dom.
+function displayLatestMinutesActive() {
+  dailyMinutesActiveParagraph.innerText = `You were active for ${userActive.userMinutesActive("2019/06/15")} minutes. Way to go?`;
+}
 
-//   -For a user, the number minutes active for the latest day
-// Create placeholder tag and style in html and css. create querry selectors to minutesactive for day value to placeholder. Create necessary event listener and function to apply to dom.
+function displayLatestMilesWalked() {
+  dailyDistanceWalkedParagraph.innerText = `Sheesh... You seriously walked ${userActive.findMilesWalkedSpecificDay("2019/06/15")} miles today... Do you even own a car?`;
+}
 
 //   -For a user, the distance they have walked (in miles) for the latest day based on their step count
 //Create placeholder tag and style in html and css. create querry selectors to connnect miles walked for day value to placeholder. Create necessary event listener and function to apply to dom.
