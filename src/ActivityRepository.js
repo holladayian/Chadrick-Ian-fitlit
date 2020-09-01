@@ -31,7 +31,7 @@ class ActivityRepository {
   findUserStride(id) {
     return this.findUser(id).strideLength
   }
-  //we may not want average here
+
   findAverageFlightsOfStairsClimbedForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
     let totalFlightsOfStairsClimbed = specifiedDate.reduce((totalStairs, day) => {
@@ -40,7 +40,6 @@ class ActivityRepository {
     return Math.floor(totalFlightsOfStairsClimbed / specifiedDate.length)
   };
 
-  //We may not want average here
   findAverageNumberOfStepsTakenForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
     let totalNumberOfStepsTaken = specifiedDate.reduce((totalSteps, day) => {
@@ -49,7 +48,6 @@ class ActivityRepository {
     return Math.floor(totalNumberOfStepsTaken / specifiedDate.length)
   };
 
-  //We may not want average here
   findAverageMinutesActiveForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
     let totalMinutesActive = specifiedDate.reduce((totalMins, day) => {

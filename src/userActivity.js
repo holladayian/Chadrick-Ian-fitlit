@@ -15,10 +15,6 @@ class UserActivity {
     return Math.round(userMilesWalked * 100) / 100;
   }
 
-  findStepsWalkedSpecificDay(Date) {
-    let userSteps = this.findStartDateInfo(date).numSteps;
-  }
-  
   findStartDateInfo(date) {
     return this.userActivityInformation.find(datum => datum['date'] === date);
   }
