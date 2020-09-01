@@ -45,12 +45,14 @@ function loadInfoForDashboard() {
   user = userRepository.instantiateUser(1);
   userSleep = sleepRepository.instantiateUserSleep(1);
   userHydro = hydrationRepository.instantiateHydroUser(1);
+  userActivity = activityRepository.instantiateUserActivity(1);
   displayTodaysWaterConsumption();
   fillOutWelcome();
   compareSteps();
   displayWeeklyWaterConsumption();
   displaySleepDay();
   displaySleepWeek();
+  displayAllTimeSleepStuff();
   // intantiateRepositories();
   fillOutUserInfoCard();
 }
@@ -98,24 +100,22 @@ function displaySleepDay() {
 }
 
 function displaySleepWeek() {
+  // the below date will need to be passed in dynamically
+  // We might also consider throuwing in a forEach to display each day
   weekSleepParagraph.innerText = `This week you slept ${userSleep.specificUserWeeklySleepHours("2019/06/15", "2019/06/22")}`
 }
 
+function displayAllTimeSleepStuff() {
+  allTimeSleepParagraph.innerText = `Your all time sleep quality average is ${userSleep.findAllTimeSleepQualityAverage()} out of 10, and your all time average sleep hours is ${userSleep.findAllTimeHoursSleptAverage()} hours`
+}
 
-// Sleep: it 3
-//
-// - Dashboard: Items to add to the dashboard:
-//
+function displayLatestDaySteps() {
+    // the below date will need to be passed in dynamically
+      dailyStepsParagraph.innerText = `You walked ${userActivity.findStartDateInfo("2019/06/15").numSteps} steps today. Well... There's always tomorrow!`;
+}
+Activity: it4
 
-//   - For a user, their sleep data over the course of the latest week (hours slept and quality of sleep)
-//create placeholder tags and style in html and css. create query selector for days of weeks, apply each value of the weekly hoursslept and qualityofSleep to particular spots in the placeholder, I would consider an iterator method to create html for the widget.
 
-//   - For a user, their all-time average sleep quality and all-time average number of hours slept
-//create placeholder tag and style in html and css. create query selector for average hours slept and average quality of sleep placeholders per the widget. create a listener for the widget, unless we can do one for all widgets on page load or a first click.
-
-// Activity: it4
-
-//
 //   -For a user, the number of steps for the latest day
 //Create placeholder tag and style in html and css. create querry selectors to steps for day value to placeholder. Create necessary event listener and function to apply to dom.
 
