@@ -20,12 +20,12 @@ const cardStrideLength = document.querySelector(".card-stride-length");
 const cardDailyStepGoal = document.querySelector(".card-daily-step-goal");
 const dailyWaterParagraph = document.querySelector(".daily-water-paragraph");
 const weekWaterParagraph = document.querySelector(".week-water-paragraph");
+const lastNightSleepParagraph = document.querySelector(".last-night-sleep-paragraph");
 
 // const cardFriends = document.querySelector(".card-friends");
 
 const compareUserActivityParagraph = document.querySelector(".compare-user-activity-paragraph");
 const weekActivityParagraph = document.querySelector(".week-activity-paragraph");
-const lastNightSleepParagraph = document.querySelector(".last-night-sleep-paragraph");
 const weekSleepParagraph = document.querySelector(".week-sleep-paragraph");
 const allTimeSleepParagraph = document.querySelector(".all-time-sleep-paragraph");
 const stepGoalVsAverageParagraph = document.querySelector(".step-goal-vs-average-paragraph");
@@ -50,6 +50,7 @@ function loadInfoForDashboard() {
   compareSteps();
   displayWeeklyWaterConsumption();
   displaySleepDay();
+  displaySleepWeek();
   // intantiateRepositories();
   fillOutUserInfoCard();
 }
@@ -93,8 +94,11 @@ function displayWeeklyWaterConsumption() {
 
 function displaySleepDay() {
   // the below date will need to be passed in dynamically
-
   lastNightSleepParagraph.innerText = `Last night ya slept ${userSleep.findSpecificDaySleepHours("2019/06/15")} hours!`
+}
+
+function displaySleepWeek() {
+  weekSleepParagraph.innerText = `This week you slept ${userSleep.specificUserWeeklySleepHours("2019/06/15", "2019/06/22")}`
 }
 
 
@@ -102,8 +106,6 @@ function displaySleepDay() {
 //
 // - Dashboard: Items to add to the dashboard:
 //
-//   -For a user, their sleep data for the latest day (hours slept and quality of sleep)
-// create placeholder tag and style in html and css. create query selector for hours slept and quality of sleep placeholders per the widget. create a listener for the widget, unless we can do one for all widgets on page load or a first click.
 
 //   - For a user, their sleep data over the course of the latest week (hours slept and quality of sleep)
 //create placeholder tags and style in html and css. create query selector for days of weeks, apply each value of the weekly hoursslept and qualityofSleep to particular spots in the placeholder, I would consider an iterator method to create html for the widget.
