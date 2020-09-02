@@ -26,12 +26,6 @@ const lastNightSleepParagraph = document.querySelector(".last-night-sleep-paragr
 
 const compareUserActivityParagraph = document.querySelector(".compare-user-activity-paragraph");
 const weekActivityParagraph = document.querySelector(".week-activity-paragraph");
-// const weekActivityParagraph2 = document.querySelector(".week-2-paragraph");
-// const weekActivityParagraph3 = document.querySelector(".week-3-paragraph");
-// const weekActivityParagraph4 = document.querySelector(".week-4-paragraph");
-// const weekActivityParagraph5 = document.querySelector(".week-5-paragraph");
-// const weekActivityParagraph6 = document.querySelector(".week-6-paragraph");
-// const weekActivityParagraph7 = document.querySelector(".week-7-paragraph");
 const weekSleepParagraph = document.querySelector(".week-sleep-paragraph");
 const allTimeSleepParagraph = document.querySelector(".all-time-sleep-paragraph");
 const stepGoalVsAverageParagraph = document.querySelector(".step-goal-vs-average-paragraph");
@@ -39,14 +33,9 @@ const dailyStepsParagraph = document.querySelector(".daily-steps-paragraph");
 const dailyMinutesActiveParagraph = document.querySelector(".daily-minutes-active-paragraph");
 const dailyDistanceWalkedParagraph = document.querySelector(".daily-distance-walked-paragraph");
 
-
-// window.onload(loadInfoForDashboard());
 window.addEventListener('onload', loadInfoForDashboard());
 // window.addEventListener('click', findBeginningOfWeek);
 
-// -This JS file should call methods from your classes to retrieve information.
-//-There should not be any DOM manipulation within the User or UserRepository class files.
-// -To develop this dashboard, first choose a user at random - someone with a randomly generated name that speaks to you. On the dashboard for a user:
 function loadInfoForDashboard() {
   // the "1" below needs to be dynamic
   user = userRepository.instantiateUser(1);
@@ -69,17 +58,7 @@ function loadInfoForDashboard() {
   fillOutUserInfoCard();
   displayLatestDaySteps();
 }
-// function intantiateRepositories() {
-//   userRepository = new UserRepository();
-//   hydrationRepository = new HydrationRepository();
-//   sleepRepository = new SleepRepository();
-//   activityRepository = new ActivityRepository();
-//   user = userRepository.instantiateUser(1);
-//   console.log(user);
-// }
-// -Create an info card on the dashboard with all of user’s info on the page
-//We need to create a variable to hold the data from the individual user data. perhaps creating an empty variable of userData and creating a function that applies the user data to the the variable after an event which would require an event listener and relevant function.
-//id: userData.id,
+
 function fillOutUserInfoCard() {
   cardName.innerText =  `${user.userData.name}`;
   cardAddress.innerText = `${user.userData.address}`;
@@ -148,19 +127,6 @@ function displayAcitityForWeek() {
   let weeklyRundown = rundownList.join(' ');
   weekActivityParagraph.innerText = `${weeklyRundown}`;
 }
-  // weekActivityParagraph1 .innerText = `On the first day you walked ${weeklyInfo[0].numSteps} steps, were active for ${weeklyInfo[0].minutesActive} minutes, and climbed ${weeklyInfo[0].flightsOfStairs} flights of stairs!`;
-  // weekActivityParagraph5 .innerText = `On the second day you walked ${weeklyInfo[1].numSteps} steps, were active for ${weeklyInfo[1].minutesActive} minutes, and climbed ${weeklyInfo[1].flightsOfStairs} flights of stairs!`;
-  // weekActivityParagraph2 .innerText = `On the third day you walked ${weeklyInfo[2].numSteps} steps, were active for ${weeklyInfo[2].minutesActive} minutes, and climbed ${weeklyInfo[2].flightsOfStairs} flights of stairs!`;
-  // weekActivityParagraph3 .innerText = `On the fourth day you walked ${weeklyInfo[3].numSteps} steps, were active for ${weeklyInfo[3].minutesActive} minutes, and climbed ${weeklyInfo[3].flightsOfStairs} flights of stairs!`;
-  // weekActivityParagraph4 .innerText = `On the fifth day you walked ${weeklyInfo[4].numSteps} steps, were active for ${weeklyInfo[4].minutesActive} minutes, and climbed ${weeklyInfo[4].flightsOfStairs} flights of stairs!`;
-  // weekActivityParagraph6 .innerText = `On the sixth day you walked ${weeklyInfo[5].numSteps} steps, were active for ${weeklyInfo[5].minutesActive} minutes, and climbed ${weeklyInfo[5].flightsOfStairs} flights of stairs!`;
-  // weekActivityParagraph7 .innerText = `On the seventh day you walked ${weeklyInfo[6].numSteps} steps, were active for ${weeklyInfo[6].minutesActive} minutes, and climbed ${weeklyInfo[6].flightsOfStairs} flights of stairs!`;
-
-
-
-//   -For a user, a weekly view of their step count, flights of stairs climbed, and minutes active
-//create placeholder tags and style in html and css. create query selector for days of weeks, apply each value of the weekly from activities to particular spots in the placeholder, I would consider an iterator method to create html for the widget.
-
 
 function selectDate(day) {
   theSelectedDate = moment(day, 'YYYY/MM/DD');
