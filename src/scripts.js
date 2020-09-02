@@ -38,6 +38,7 @@ const dailyStepsParagraph = document.querySelector(".daily-steps-paragraph");
 const dailyMinutesActiveParagraph = document.querySelector(".daily-minutes-active-paragraph");
 const dailyDistanceWalkedParagraph = document.querySelector(".daily-distance-walked-paragraph");
 const sleepExtremists = document.querySelector(".sleep-extremists-widget");
+const laziestPerson = document.querySelector(".laziest-person-widget");
 
 const selectableScrollBox = document.querySelector(".selectbox-scrollable");
 
@@ -134,6 +135,11 @@ function displayLatestMilesWalked(startDate) {
   dailyDistanceWalkedParagraph.innerText = `Sheesh... You seriously walked ${userActive.findMilesWalkedSpecificDay(startDate)} miles today... Do you even own a car?`;
 }
 
+function displayLaziestPerson(startDate) {
+  let lazzyPerson = userRepository.instantiateUser(activityRepository.findLaziestPersonForADate(startDate).userID);
+  laziestPerson.innerText = `${lazzyPerson.name} was the laziest person! congrats!!`
+}
+
 function compareUserToAverageDayActivity(startDate) {
   stepGoalVsAverageParagraph.innerText = `Woah... You walked ${userActive.findSpecificStepsWalked(startDate)} steps, while errbody else walked an average of ${activityRepository.findAverageNumberOfStepsTakenForADate(startDate)} steps. You were active for ${userActive.userMinutesActive(startDate)} minutes, while errbody else was active an average of ${activityRepository.findAverageMinutesActiveForADate(startDate)} minutes. You climbed ${userActive.findStairsClimbedSpecificDay(startDate)} flights of stairs, while errbody else climbed an average of ${activityRepository.findAverageFlightsOfStairsClimbedForADate(startDate)} flights of stairs. What matters is that you're trying your best, right??`
 }
@@ -178,6 +184,7 @@ function findADate(event, submitDateInput) {
   displayWeeklyWaterConsumption(findBeginningOfWeek(thisSelectedDate), selectDate(thisSelectedDate));
   displayTodaysWaterConsumption(selectDate(thisSelectedDate));
   displaySleepOutliers(selectDate(thisSelectedDate));
+  displayLaziestPerson(selectDate(thisSelectedDate));
 }
 
 function selectDate(day) {
