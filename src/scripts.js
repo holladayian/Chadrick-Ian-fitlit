@@ -18,6 +18,7 @@ const cardAddress = document.querySelector(".card-address");
 const cardEmail = document.querySelector(".card-email");
 const cardStrideLength = document.querySelector(".card-stride-length");
 const cardDailyStepGoal = document.querySelector(".card-daily-step-goal");
+const cardFriends = document.querySelector('.card-friends');
 const dailyWaterParagraph = document.querySelector(".daily-water-paragraph");
 const weekWaterParagraph = document.querySelector(".week-water-paragraph");
 const lastNightSleepParagraph = document.querySelector(".last-night-sleep-paragraph");
@@ -65,7 +66,19 @@ function fillOutUserInfoCard() {
   cardEmail.innerText = `${user.email}`;
   cardStrideLength.innerText = `${user.strideLength}`;
   cardDailyStepGoal.innerText = `${user.dailyStepGoal}`;
-  // cardFriends.innerText = `${user.friends}`;
+  cardFriends.innerText = `${user.friends}`;
+  cardFriends.innerText = interpolateFriends(user.id);
+}
+
+function getFriends(id) {
+console.log(activityRepository.findFriends(id));
+  return activityRepository.findFriends(id)
+}
+
+function interpolateFriends(id) {
+  let friendNames = getFriends(id).map(friend => friend.user.name);
+  return friendNames.join(', ');
+   // `${propperNames}`;
 }
 
 function fillOutWelcome() {

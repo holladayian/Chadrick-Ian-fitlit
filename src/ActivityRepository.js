@@ -26,29 +26,12 @@ class ActivityRepository {
   }
 
   findFriends(id) {
-    let friendlyBoys = [];
-     this.findUser(id).userData.friends.forEach(friendID => {
-      friendlyBoys.push(this.instantiateUserActivity(friendID))
+    let friendList = [];
+     this.findUser(id).friends.forEach(friendID => {
+      friendList.push(this.instantiateUserActivity(friendID))
     })
-    return friendlyBoys
+    return friendList
   }
-
-
-  // addUserToFriendList(id) {
-  //   // console.log(this.instantiateUserActivity(id));
-  //   // console.log(this.findFriends(id));
-  //   let allBuds = this.findFriends(id).unshift(this.instantiateUserActivity(id));
-  //   return allBuds
-  // }
-
-
-// maybe don't need this
-  // findUserStride(id) {
-  //   return this.findUser(id).strideLength
-  // }
-
-//
-//
 
   findAverageFlightsOfStairsClimbedForADate(date) {
     let specifiedDate = this.findDateForActivity(date);

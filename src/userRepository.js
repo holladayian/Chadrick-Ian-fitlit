@@ -6,7 +6,6 @@
 
 class UserRepository {
   constructor(userList) {
-    // changed this.data to this.listOfUsers
     this.listOfUsers = userList;
   }
 
