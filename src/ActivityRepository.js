@@ -1,11 +1,7 @@
+const UserActivity = require('../src/userActivity');
+const UserRepository = require('../src/userRepository');
+// const userRepository = new UserRepository(userData);
 
-if (typeof(require) !== 'undefined') {
-  // const activitySamples = require('../data/activitySamples');
-  const UserActivity = require('../src/userActivity');
-  const UserRepository = require('../src/userRepository');
-  const activitySamples = require('../data/activitySamples');
-  const userData = require('../data/users');
-}
 
 class ActivityRepository {
   constructor(userInfo) {

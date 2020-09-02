@@ -1,16 +1,13 @@
-if (typeof(require) !== 'undefined') {
-  const sleepSamples = require('../data/sleepSamples');
   const UserSleep = require('../src/userSleep');
   const moment = require('moment');
-}
 
 
 class SleepRepository {
-  constructor(userData) {
-    this.sleepInformation = userData;
+  constructor(sleepRepoInfo) {
+    this.sleepInformation = sleepRepoInfo;
   }
   findSleepWeek(startDate, endDate) {
-    return sleepSamples.filter(day => {
+    return this.sleepInformation.filter(day => {
       if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
         return day;
       }
@@ -53,7 +50,7 @@ class SleepRepository {
   }
 
   instantiateAllUsers() {
-    let allUserIDs = sleepSamples.map(user => user.userID);
+    let allUserIDs = this.sleepInformation.map(user => user.userID);
     let individualUserIDs = Array.from(new Set(allUserIDs));
     return individualUserIDs.map(sleepUserID => this.instantiateUserSleep(sleepUserID));
 

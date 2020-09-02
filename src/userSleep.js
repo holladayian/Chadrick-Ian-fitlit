@@ -1,7 +1,4 @@
-if (typeof(require) !== 'undefined') {
-  const sleepSamples = require('../data/sleepSamples');
   const moment = require('moment');
-}
 
 class UserSleep {
   constructor(user) {
