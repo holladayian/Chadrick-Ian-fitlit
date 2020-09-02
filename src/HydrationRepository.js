@@ -1,7 +1,4 @@
-if (typeof(require) !== 'undefined') {
-  const hydrationSamples = require('../data/hydrationSamples');
   const UserHydration = require('../src/userHydration');
-}
 
 class HydrationRepository {
   constructor(userData) {

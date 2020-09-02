@@ -1,12 +1,11 @@
-if (typeof(require) !== 'undefined') {
-  // const UserRepository = require('../src/UserRepository');
+  // const UserRepository = require('../src/userRepository');
   const moment = require('moment');
-}
 
 class UserActivity {
   constructor(userInfo, user) {
     this.userActivityInformation = userInfo;
-    this.user = user.userData;
+    this.user = user;
+    // this.user = user.userData;
   }
 
   findSpecificStepsWalked(date) {

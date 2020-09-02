@@ -1,15 +1,21 @@
 const chai = require('chai');
 const expect = chai.expect;
 const UserActivity = require('../src/userActivity');
+const UserRepository = require('../src/userRepository');
 const ActivityRepository = require('../src/ActivityRepository');
 const activitySamples = require('../data/activitySamples');
+const userSamples = require('../data/userSamples');
+// const userRepository = new UserRepository(userData);
 
 describe('UserActivity', () => {
-  let userActivity, activityRepo;
+  let userActivity, activityRepo2;
   beforeEach( () => {
     // userActivity = new UserActivity();
-    activityRepo = new ActivityRepository(activitySamples);
-    userActivity = activityRepo.instantiateUserActivity(1);
+    activityRepo2 = new ActivityRepository(activitySamples);
+
+    userActivity = activityRepo2.instantiateUserActivity(1);
+    // userActivity = new UserActivity(activitySamples[0], userSamples[0]);
+    // userActivity = activityRepo.instantiateUserActivity(1);
     // activityRepo = new ActivityRepository();
     // userActivity = activityRepo.instantiateUserActivity(1);
   });
@@ -19,6 +25,7 @@ describe('UserActivity', () => {
   });
 
   it('should return user stride length', () => {
+    console.log(userSamples[0]);
     expect(userActivity.user.strideLength).to.equal(4.3);
   })
 
