@@ -12,6 +12,10 @@ let user;
 const hydrationRepository = new HydrationRepository(hydrationData);
 const sleepRepository = new SleepRepository(sleepData);
 const activityRepository = new ActivityRepository(activityData);
+
+// const submitDateInput = document.querySelector(".submit-date-button");
+const submitDateButton = document.querySelector(".submit-date-button");
+
 const welcomeParagraph = document.querySelector(".welcome-paragraph");
 const cardName = document.querySelector(".card-name");
 const cardAddress = document.querySelector(".card-address");
@@ -33,11 +37,12 @@ const stepGoalVsAverageParagraph = document.querySelector(".step-goal-vs-average
 const dailyStepsParagraph = document.querySelector(".daily-steps-paragraph");
 const dailyMinutesActiveParagraph = document.querySelector(".daily-minutes-active-paragraph");
 const dailyDistanceWalkedParagraph = document.querySelector(".daily-distance-walked-paragraph");
+const sleepExtremists = document.querySelector(".sleep-extremists-widget");
 
 const selectableScrollBox = document.querySelector(".selectbox-scrollable");
 
 window.addEventListener('onload', loadInfoForDashboard());
-selectableScrollBox.addEventListener('click', findADate);
+submitDateButton.addEventListener('click', validateDate);
 
 function loadInfoForDashboard() {
   // the "1" below needs to be dynamic
@@ -45,21 +50,10 @@ function loadInfoForDashboard() {
   userSleep = sleepRepository.instantiateUserSleep(1);
   userHydro = hydrationRepository.instantiateHydroUser(1);
   userActive = activityRepository.instantiateUserActivity(1);
-  // displayTodaysWaterConsumption();
   fillOutWelcome();
   compareSteps();
-  // displayWeeklyWaterConsumption();
-  // displaySleepDay();
-  // displaySleepWeek();
   displayAllTimeSleepStuff();
-  // displayLatestDaySteps();
-  // displayLatestMinutesActive();
-  // displayLatestMilesWalked();
-  // compareUserToAverageDayActivity();
-  // displayAcitityForWeek();
-  // intantiateRepositories();
   fillOutUserInfoCard();
-  // displayLatestDaySteps();
   findADate();
 }
 
@@ -84,11 +78,11 @@ function interpolateFriends(id) {
 }
 
 function fillOutWelcome() {
-  welcomeParagraph.innerText = `Yooohoo ${user.name}`
+  welcomeParagraph.innerText = `Yooohoo ${user.name}... Sweet tarnation! Looks like you've been hitting up them there country buffets a little tooooo frequently...`
 }
 
 function compareSteps() {
-  compareUserActivityParagraph.innerText = `your shit is ${user.dailyStepGoal}, errbody else has an average of ${userRepository.findTotalAverageStepGoal()}`
+  compareUserActivityParagraph.innerText = `Your daily step goal is ${user.dailyStepGoal} steps, while errbody else has an average of ${userRepository.findTotalAverageStepGoal()} steps. Your expectations might be too high for ur level of physical prowess...`
 }
 
 function displayTodaysWaterConsumption(startDate) {
@@ -97,30 +91,37 @@ function displayTodaysWaterConsumption(startDate) {
 }
 
 function displayWeeklyWaterConsumption(startDate, endDate) {
-  // the below date will need to be passed in dynamically
-// We might also consider throuwing in a forEach to display each day
-// fix the text based stuff
-console.log(userHydro.weeklyHydration(startDate, endDate));
-  weekWaterParagraph.innerText = `The whatar consumption for a week has been ${userHydro.weeklyHydration(startDate, endDate)}`
+  let waterWeek = userHydro.findHydrationWeek(startDate, endDate);
+  let waterDayList = waterWeek.map(day => {
+    return `On day ${waterWeek.indexOf(day) + 1} you don drank ${day.numOunces} ounces of pond whatur!`;
+  })
+  let weeklyWater = waterDayList.join(' ');
+  weekWaterParagraph.innerText = `${weeklyWater}`;
 }
 
 function displaySleepDay(startDate) {
-  // the below date will need to be passed in dynamically
   lastNightSleepParagraph.innerText = `Last night ya slept ${userSleep.findSpecificDaySleepHours(startDate)} hours!`
 }
 
 function displaySleepWeek(startDate, endDate) {
   let sleepHours = userSleep.specificUserWeeklySleepHours(startDate, endDate);
-  weekSleepParagraph.innerText = `This week you slept ${sleepHours[0]} hours on day one,  ${sleepHours[1]} hours on day two, ${sleepHours[2]} hours on day three, ${sleepHours[3]} hours on day four, ${sleepHours[4]} hours on day five, ${sleepHours[5]} hours on day six, and ${sleepHours[6]} hours on day seven.`
+  let sleepDayList = sleepHours.map(day => {
+    return `On day ${sleepHours.indexOf(day) + 1} you slept ${day} hours!`;
+  })
+  let weeklySleep = sleepDayList.join(' ');
+  console.log(weeklySleep);
+  weekSleepParagraph.innerText = `${weeklySleep}`;
 }
 
+function findSleepOutliers(startDate) {
+  sleepExtremists.innerText = `${sleepRepository.whoIsTheSleepOutlier(startDate, "max")} slept the most on ${startDate}, and ${sleepRepository.whoIsTheSleepOutlier(startDate, "min")} slept the least!`;
+}
 
 function displayAllTimeSleepStuff() {
   allTimeSleepParagraph.innerText = `Your all time sleep quality average is ${userSleep.findAllTimeSleepQualityAverage()} out of 10, and your all time average sleep hours is ${userSleep.findAllTimeHoursSleptAverage()} hours`
 }
 
 function displayLatestDaySteps(startDate) {
-  // the below date will need to be passed in dynamically
   dailyStepsParagraph.innerText = `You walked ${userActive.findSpecificStepsWalked(startDate)} steps today. Well... There's always tomorrow!`;
 }
 
@@ -145,43 +146,45 @@ function displayAcitityForWeek(startDate, endDate) {
   weekActivityParagraph.innerText = `${weeklyRundown}`;
 }
 
-function findADate(event) {
-  // let thisSelectedDate = event.target.value || '2019/06/22'
+function validateDate(event) {
+  const submitDateInput = document.querySelector(".submit-date-input");
+  let findDate = userSleep.userSleepInformation.find(day => {
+    return day.date === submitDateInput.value
+    })
+  console.log(findDate);
+  console.log(userSleep.userSleepInformation);
+  console.log(submitDateInput);
+  if (findDate) {
+      return findADate(event, submitDateInput)
+  }
+}
+
+function findADate(event, submitDateInput) {
   if(!event) {
     thisSelectedDate = '2019/06/22'
   } else {
-  thisSelectedDate = event.target.value
+  thisSelectedDate = submitDateInput.value
   }
   console.log(thisSelectedDate);
+  // set veriables for findBeginningOfWeek and selectDate.
   displayAcitityForWeek(findBeginningOfWeek(thisSelectedDate), selectDate(thisSelectedDate));
-  compareUserToAverageDayActivity(findBeginningOfWeek(thisSelectedDate));
-  displayLatestMilesWalked(findBeginningOfWeek(thisSelectedDate));
-  displayLatestMinutesActive(findBeginningOfWeek(thisSelectedDate));
-  displayLatestDaySteps(findBeginningOfWeek(thisSelectedDate));
-  displaySleepWeek(findBeginningOfWeek(thisSelectedDate));
-  displaySleepDay(findBeginningOfWeek(thisSelectedDate));
+  compareUserToAverageDayActivity(selectDate(thisSelectedDate));
+  displayLatestMilesWalked(selectDate(thisSelectedDate));
+  displayLatestMinutesActive(selectDate(thisSelectedDate));
+  displayLatestDaySteps(selectDate(thisSelectedDate));
+  displaySleepWeek(findBeginningOfWeek(thisSelectedDate), selectDate(thisSelectedDate));
+  displaySleepDay(selectDate(thisSelectedDate));
   displayWeeklyWaterConsumption(findBeginningOfWeek(thisSelectedDate), selectDate(thisSelectedDate));
-  displayTodaysWaterConsumption(findBeginningOfWeek(thisSelectedDate));
-
-
-
-  // selectDate(theSelectedDate);
-  // findBeginningOfWeek(theSelectedDate);
+  displayTodaysWaterConsumption(selectDate(thisSelectedDate));
+  findSleepOutliers(selectDate(thisSelectedDate);
 }
 
 function selectDate(day) {
   return moment(day, 'YYYY/MM/DD').format('YYYY/MM/DD');
-  // console.log(theSelectedDate.format('YYYY/MM/DD'));
-  // console.log(theSelectedDate.format('YYYY/MM/DD'));
-  // return theSelectedDate.format('YYYY/MM/DD');
 }
 
 function findBeginningOfWeek(day) {
-  // const selectedDay = moment(selectDate(day));
-  // console.log(theSelectedDate.subtract(7, 'days').format('YYYY/MM/DD'));
   return moment(day, 'YYYY/MM/DD').subtract(7, 'days').format('YYYY/MM/DD');
-  // const weekStartDate = selectedDay.subtract(7, 'days');
-  // return theSelectedDate.format('YYYY/MM/DD');
 }
 
 selectDate("2019/06/15");

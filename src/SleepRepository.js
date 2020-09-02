@@ -26,34 +26,17 @@ class SleepRepository {
   }
 
   findAllUsersAverageSleepQuality() {
-    // const weeklySchedule = this.findSleepWeek(startDate, endDate);
-    // let allUserIDs = sleepSamples.map(user => user.userID);
-    // let individualUserIDs = Array.from(new Set(allUserIDs));
-    // let sleepUsers = individualUserIDs.map(sleepUserID => this.instantiateUserSleep(sleepUserID));
-    // let totalSleepQuality = sleepUsers.reduce((sleepQualityTotal, sleepUser) => {
-    //   // console.log(user.userSleepInformation.map(day => day.sleepQuality));
-    //   return sleepQualityTotal += sleepUser.userSleepInformation.map(day => day.sleepQuality).reduce((usersDays, sleepForADay) => {
-    //     return usersDays += sleepForADay
-    //   }, 0);
-    // }, 0)
     const totalSleepQuality = this.sleepInformation.reduce((sleepQualityTotal, sleepQualityDay) => {
       return sleepQualityTotal += sleepQualityDay.sleepQuality
     }, 0)
-
-    // let usersWeeks = individualUserIDs.map(sleepUser => this.instantiateUserSleep(sleepUser));
     let totalSleepQualityAverage = totalSleepQuality / this.sleepInformation.length;
-
     return Math.floor(totalSleepQualityAverage);
-
-    // specificUsersWeek.map(specificUser => this.)
-    // return specificUsersWeek;
   }
 
   instantiateAllUsers() {
     let allUserIDs = this.sleepInformation.map(user => user.userID);
     let individualUserIDs = Array.from(new Set(allUserIDs));
     return individualUserIDs.map(sleepUserID => this.instantiateUserSleep(sleepUserID));
-
   }
 
   findSleepQualitiesAverageGreaterThanThree(startDay, endDay) {

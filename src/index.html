@@ -11,9 +11,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <section class="title-and-date-picker">
       <h1>Activity Tracker</h1>
-      <div class="multi-selectbox">
+      <section class="date-submittor">
+        <p class="date-disclaimer">Enter date between 2019/06/22 and 2019/09/22 in Input</p>
+        <input type="text" class="submit-date-input" value="" placeholder="Enter date here">
+        <button type="button" class="submit-date-button">Submit Date</button>
+      </section>
+      <!-- <div class="multi-selectbox">
         <select class="selectbox-scrollable" name=""  multiple="multiple"  id="selectbox">
-          <option value="2019/06/15">2019/06/15</option>
+          <option value="2019/09/15">2019/09/15</option>
           <option value="2019/09/16">2019/09/16</option>
           <option value="2019/09/17">2019/09/17</option>
           <option value="2019/09/18">2019/09/18</option>
@@ -22,11 +27,11 @@
           <option value="2019/09/21">2019/09/21</option>
           <option value="2019/09/22">2019/09/22</option>
         </select>
-      </div>
+      </div> -->
   </section>
     <section description="" class="dashboard">
       <section description="" class="welcome-widget widget">
-        <p class="welcome-paragraph">This widget is for welcoming user</p>
+        <p class="welcome-paragraph paragraph">This widget is for welcoming user</p>
       </section>
       <section description="" class="user-info-widget widget">
         <section description="" class="card-left">
@@ -47,40 +52,43 @@
         </section>
       </section>
       <section description="" class="compare-user-activity-to-all-widget widget">
-        <p class="compare-user-activity-paragraph">This widget is for comparing user activity to all users activity</p>
+        <p class="compare-user-activity-paragraph paragraph">This widget is for comparing user activity to all users activity</p>
       </section>
       <section description="" class="daily-water-widget widget">
-        <p class="daily-water-paragraph">This widget is for daily water intake</p>
+        <p class="daily-water-paragraph paragraph">This widget is for daily water intake</p>
       </section>
       <section description="" class="week-water-widget widget">
-        <p class="week-water-paragraph">This widget is for weekly water intake</p>
+        <p class="week-water-paragraph paragraph">This widget is for weekly water intake</p>
       </section>
       <section description="" class="last-night-sleep-widget widget">
-        <p class="last-night-sleep-paragraph">This widget is for the last night's sleep</p>
+        <p class="last-night-sleep-paragraph paragraph">This widget is for the last night's sleep</p>
       </section>
       <section description="" class="week-sleep-widget widget">
-        <p class="week-sleep-paragraph">This widget is for the weekly sleep</p>
+        <p class="week-sleep-paragraph paragraph">This widget is for the weekly sleep</p>
       </section>
       <section description="" class="all-time-sleep-widget widget">
-        <p class="all-time-sleep-paragraph">This widget is for all time sleep average widget</p>
+        <p class="all-time-sleep-paragraph paragraph">This widget is for all time sleep average widget</p>
       </section>
       <section description="" class="step-goal-vs-average-widget widget">
-        <p class="step-goal-vs-average-paragraph">This widget is for the user step goal vs average user step goal</p>
+        <p class="step-goal-vs-average-paragraph paragraph">This widget is for the user step goal vs average user step goal</p>
       </section>
       <section description="" class="daily-steps-widget widget">
-        <p class="daily-steps-paragraph">This widget is for the daily steps</p>
+        <p class="daily-steps-paragraph paragraph">This widget is for the daily steps</p>
       </section>
       <section description="" class="daily-minutes-active-widget widget">
-        <p class="daily-minutes-active-paragraph">This widget is for the daily minutes active</p>
+        <p class="daily-minutes-active-paragraph paragraph">This widget is for the daily minutes active</p>
       </section>
       <section description="" class="daily-distance-walked-widget widget">
-        <p class="daily-distance-walked-paragraph">This widget is for the daily distance walked</p>
+        <p class="daily-distance-walked-paragraph paragraph">This widget is for the daily distance walked</p>
       </section>
-      <section description="" class="laziest-person-widget">
-        <p class="laziest-person-paragraph"></p>
+      <section description="" class="laziest-person-widget widget">
+        <p class="laziest-person-paragraph paragraph">This widget is for the laziest person</p>
+      </section>
+      <section description="" class="sleep-extremists-widget widget">
+        <p class="sleep-extremists-paragraph paragraph paragraph">This widget is for the individual who slept the most and the individual who slept the least</p>
       </section>
       <section description="" class="week-activity-widget widget">
-        <p class="week-activity-paragraph">This widget is for the weekly activity</p>
+        <p class="week-activity-paragraph paragraph">This widget is for the weekly activity</p>
       </section>
     </section>
     <script type="text/javascript" src="../data/activity.js"></script>
