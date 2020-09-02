@@ -6,7 +6,7 @@ if (typeof(require) !== 'undefined') {
   const ActivityRepository = require('../src/ActivityRepository');
 }
 
-// let theSelectedDate;
+let theSelectedDate;
 const userRepository = new UserRepository(userData);
 let user;
 const hydrationRepository = new HydrationRepository(hydrationData);
@@ -34,8 +34,10 @@ const dailyStepsParagraph = document.querySelector(".daily-steps-paragraph");
 const dailyMinutesActiveParagraph = document.querySelector(".daily-minutes-active-paragraph");
 const dailyDistanceWalkedParagraph = document.querySelector(".daily-distance-walked-paragraph");
 
+const selectableScrollBox = document.querySelector(".selectbox-scrollable");
+
 window.addEventListener('onload', loadInfoForDashboard());
-// window.addEventListener('click', findBeginningOfWeek);
+selectableScrollBox.addEventListener('click', findADate);
 
 function loadInfoForDashboard() {
   // the "1" below needs to be dynamic
@@ -43,21 +45,22 @@ function loadInfoForDashboard() {
   userSleep = sleepRepository.instantiateUserSleep(1);
   userHydro = hydrationRepository.instantiateHydroUser(1);
   userActive = activityRepository.instantiateUserActivity(1);
-  displayTodaysWaterConsumption();
+  // displayTodaysWaterConsumption();
   fillOutWelcome();
   compareSteps();
-  displayWeeklyWaterConsumption();
-  displaySleepDay();
-  displaySleepWeek();
+  // displayWeeklyWaterConsumption();
+  // displaySleepDay();
+  // displaySleepWeek();
   displayAllTimeSleepStuff();
-  displayLatestDaySteps();
-  displayLatestMinutesActive();
-  displayLatestMilesWalked();
-  compareUserToAverageDayActivity();
-  displayAcitityForWeek();
+  // displayLatestDaySteps();
+  // displayLatestMinutesActive();
+  // displayLatestMilesWalked();
+  // compareUserToAverageDayActivity();
+  // displayAcitityForWeek();
   // intantiateRepositories();
   fillOutUserInfoCard();
-  displayLatestDaySteps();
+  // displayLatestDaySteps();
+  findADate();
 }
 
 function fillOutUserInfoCard() {
@@ -78,7 +81,6 @@ console.log(activityRepository.findFriends(id));
 function interpolateFriends(id) {
   let friendNames = getFriends(id).map(friend => friend.user.name);
   return friendNames.join(', ');
-   // `${propperNames}`;
 }
 
 function fillOutWelcome() {
@@ -89,24 +91,26 @@ function compareSteps() {
   compareUserActivityParagraph.innerText = `your shit is ${user.dailyStepGoal}, errbody else has an average of ${userRepository.findTotalAverageStepGoal()}`
 }
 
-function displayTodaysWaterConsumption() {
+function displayTodaysWaterConsumption(startDate) {
   // the below date will need to be passed in dynamically
-  dailyWaterParagraph.innerText = `Ya don drank ${userHydro.findSpecificDayHydration("2019/06/15")} ounces today`
+  dailyWaterParagraph.innerText = `Ya don drank ${userHydro.findSpecificDayHydration(startDate)} ounces today`
 }
 
-function displayWeeklyWaterConsumption() {
+function displayWeeklyWaterConsumption(startDate, endDate) {
   // the below date will need to be passed in dynamically
 // We might also consider throuwing in a forEach to display each day
-  weekWaterParagraph.innerText = `The whatar consumption for a week has been ${userHydro.weeklyHydration("2019/06/15", "2019/06/22")}`
+// fix the text based stuff
+console.log(userHydro.weeklyHydration(startDate, endDate));
+  weekWaterParagraph.innerText = `The whatar consumption for a week has been ${userHydro.weeklyHydration(startDate, endDate)}`
 }
 
-function displaySleepDay() {
+function displaySleepDay(startDate) {
   // the below date will need to be passed in dynamically
-  lastNightSleepParagraph.innerText = `Last night ya slept ${userSleep.findSpecificDaySleepHours("2019/06/15")} hours!`
+  lastNightSleepParagraph.innerText = `Last night ya slept ${userSleep.findSpecificDaySleepHours(startDate)} hours!`
 }
 
-function displaySleepWeek() {
-  let sleepHours = userSleep.specificUserWeeklySleepHours("2019/06/15", "2019/06/22");
+function displaySleepWeek(startDate, endDate) {
+  let sleepHours = userSleep.specificUserWeeklySleepHours(startDate, endDate);
   weekSleepParagraph.innerText = `This week you slept ${sleepHours[0]} hours on day one,  ${sleepHours[1]} hours on day two, ${sleepHours[2]} hours on day three, ${sleepHours[3]} hours on day four, ${sleepHours[4]} hours on day five, ${sleepHours[5]} hours on day six, and ${sleepHours[6]} hours on day seven.`
 }
 
@@ -115,25 +119,25 @@ function displayAllTimeSleepStuff() {
   allTimeSleepParagraph.innerText = `Your all time sleep quality average is ${userSleep.findAllTimeSleepQualityAverage()} out of 10, and your all time average sleep hours is ${userSleep.findAllTimeHoursSleptAverage()} hours`
 }
 
-function displayLatestDaySteps() {
+function displayLatestDaySteps(startDate) {
   // the below date will need to be passed in dynamically
-  dailyStepsParagraph.innerText = `You walked ${userActive.findSpecificStepsWalked("2019/06/15")} steps today. Well... There's always tomorrow!`;
+  dailyStepsParagraph.innerText = `You walked ${userActive.findSpecificStepsWalked(startDate)} steps today. Well... There's always tomorrow!`;
 }
 
-function displayLatestMinutesActive() {
-  dailyMinutesActiveParagraph.innerText = `You were active for ${userActive.userMinutesActive("2019/06/15")} minutes. Way to go?`;
+function displayLatestMinutesActive(startDate) {
+  dailyMinutesActiveParagraph.innerText = `You were active for ${userActive.userMinutesActive(startDate)} minutes. Way to go?`;
 }
 
-function displayLatestMilesWalked() {
-  dailyDistanceWalkedParagraph.innerText = `Sheesh... You seriously walked ${userActive.findMilesWalkedSpecificDay("2019/06/15")} miles today... Do you even own a car?`;
+function displayLatestMilesWalked(startDate) {
+  dailyDistanceWalkedParagraph.innerText = `Sheesh... You seriously walked ${userActive.findMilesWalkedSpecificDay(startDate)} miles today... Do you even own a car?`;
 }
 
-function compareUserToAverageDayActivity() {
-  stepGoalVsAverageParagraph.innerText = `Woah... You walked ${userActive.findSpecificStepsWalked("2019/06/15")} steps, while errbody else walked an average of ${activityRepository.findAverageNumberOfStepsTakenForADate("2019/06/15")} steps. You were active for ${userActive.userMinutesActive("2019/06/15")} minutes, while errbody else was active an average of ${activityRepository.findAverageMinutesActiveForADate("2019/06/15")} minutes. You climbed ${userActive.findStairsClimbedSpecificDay("2019/06/15")} flights of stairs, while errbody else climbed an average of ${activityRepository.findAverageFlightsOfStairsClimbedForADate("2019/06/15")} flights of stairs. What matters is that you're trying your best, right??`
+function compareUserToAverageDayActivity(startDate) {
+  stepGoalVsAverageParagraph.innerText = `Woah... You walked ${userActive.findSpecificStepsWalked(startDate)} steps, while errbody else walked an average of ${activityRepository.findAverageNumberOfStepsTakenForADate(startDate)} steps. You were active for ${userActive.userMinutesActive(startDate)} minutes, while errbody else was active an average of ${activityRepository.findAverageMinutesActiveForADate(startDate)} minutes. You climbed ${userActive.findStairsClimbedSpecificDay(startDate)} flights of stairs, while errbody else climbed an average of ${activityRepository.findAverageFlightsOfStairsClimbedForADate(startDate)} flights of stairs. What matters is that you're trying your best, right??`
 }
 
-function displayAcitityForWeek() {
-  let weeklyInfo = userActive.findActivityWeek("2019/06/15", "2019/06/22");
+function displayAcitityForWeek(startDate, endDate) {
+  let weeklyInfo = userActive.findActivityWeek(startDate, endDate);
   let rundownList = weeklyInfo.map(info => {
     return `On day ${weeklyInfo.indexOf(info) + 1} you walked ${info.numSteps} steps, were active for ${info.minutesActive} minutes, and climbed ${info.flightsOfStairs} flights of stairs!`;
   })
@@ -141,16 +145,41 @@ function displayAcitityForWeek() {
   weekActivityParagraph.innerText = `${weeklyRundown}`;
 }
 
+function findADate(event) {
+  // let thisSelectedDate = event.target.value || '2019/06/22'
+  if(!event) {
+    thisSelectedDate = '2019/06/22'
+  } else {
+  thisSelectedDate = event.target.value
+  }
+  console.log(thisSelectedDate);
+  displayAcitityForWeek(findBeginningOfWeek(thisSelectedDate), selectDate(thisSelectedDate));
+  compareUserToAverageDayActivity(findBeginningOfWeek(thisSelectedDate));
+  displayLatestMilesWalked(findBeginningOfWeek(thisSelectedDate));
+  displayLatestMinutesActive(findBeginningOfWeek(thisSelectedDate));
+  displayLatestDaySteps(findBeginningOfWeek(thisSelectedDate));
+  displaySleepWeek(findBeginningOfWeek(thisSelectedDate));
+  displaySleepDay(findBeginningOfWeek(thisSelectedDate));
+  displayWeeklyWaterConsumption(findBeginningOfWeek(thisSelectedDate), selectDate(thisSelectedDate));
+  displayTodaysWaterConsumption(findBeginningOfWeek(thisSelectedDate));
+
+
+
+  // selectDate(theSelectedDate);
+  // findBeginningOfWeek(theSelectedDate);
+}
+
 function selectDate(day) {
-  theSelectedDate = moment(day, 'YYYY/MM/DD');
-  console.log(theSelectedDate.format('YYYY/MM/DD'));
-  return theSelectedDate.format('YYYY/MM/DD');
+  return moment(day, 'YYYY/MM/DD').format('YYYY/MM/DD');
+  // console.log(theSelectedDate.format('YYYY/MM/DD'));
+  // console.log(theSelectedDate.format('YYYY/MM/DD'));
+  // return theSelectedDate.format('YYYY/MM/DD');
 }
 
 function findBeginningOfWeek(day) {
   // const selectedDay = moment(selectDate(day));
-  console.log(theSelectedDate.subtract(7, 'days').format('YYYY/MM/DD'));
-  return theSelectedDate.subtract(7, 'days').format('YYYY/MM/DD');
+  // console.log(theSelectedDate.subtract(7, 'days').format('YYYY/MM/DD'));
+  return moment(day, 'YYYY/MM/DD').subtract(7, 'days').format('YYYY/MM/DD');
   // const weekStartDate = selectedDay.subtract(7, 'days');
   // return theSelectedDate.format('YYYY/MM/DD');
 }
