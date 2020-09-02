@@ -26,6 +26,12 @@ const lastNightSleepParagraph = document.querySelector(".last-night-sleep-paragr
 
 const compareUserActivityParagraph = document.querySelector(".compare-user-activity-paragraph");
 const weekActivityParagraph = document.querySelector(".week-activity-paragraph");
+// const weekActivityParagraph2 = document.querySelector(".week-2-paragraph");
+// const weekActivityParagraph3 = document.querySelector(".week-3-paragraph");
+// const weekActivityParagraph4 = document.querySelector(".week-4-paragraph");
+// const weekActivityParagraph5 = document.querySelector(".week-5-paragraph");
+// const weekActivityParagraph6 = document.querySelector(".week-6-paragraph");
+// const weekActivityParagraph7 = document.querySelector(".week-7-paragraph");
 const weekSleepParagraph = document.querySelector(".week-sleep-paragraph");
 const allTimeSleepParagraph = document.querySelector(".all-time-sleep-paragraph");
 const stepGoalVsAverageParagraph = document.querySelector(".step-goal-vs-average-paragraph");
@@ -57,6 +63,8 @@ function loadInfoForDashboard() {
   displayLatestDaySteps();
   displayLatestMinutesActive();
   displayLatestMilesWalked();
+  compareUserToAverageDayActivity();
+  displayAcitityForWeek();
   // intantiateRepositories();
   fillOutUserInfoCard();
   displayLatestDaySteps();
@@ -106,8 +114,10 @@ function displaySleepDay() {
 }
 
 function displaySleepWeek() {
-  weekSleepParagraph.innerText = `This week you slept ${userSleep.specificUserWeeklySleepHours("2019/06/15", "2019/06/22")}`
+  let sleepHours = userSleep.specificUserWeeklySleepHours("2019/06/15", "2019/06/22");
+  weekSleepParagraph.innerText = `This week you slept ${sleepHours[0]} hours on day one,  ${sleepHours[1]} hours on day two, ${sleepHours[2]} hours on day three, ${sleepHours[3]} hours on day four, ${sleepHours[4]} hours on day five, ${sleepHours[5]} hours on day six, and ${sleepHours[6]} hours on day seven.`
 }
+
 
 function displayAllTimeSleepStuff() {
   allTimeSleepParagraph.innerText = `Your all time sleep quality average is ${userSleep.findAllTimeSleepQualityAverage()} out of 10, and your all time average sleep hours is ${userSleep.findAllTimeHoursSleptAverage()} hours`
@@ -126,11 +136,27 @@ function displayLatestMilesWalked() {
   dailyDistanceWalkedParagraph.innerText = `Sheesh... You seriously walked ${userActive.findMilesWalkedSpecificDay("2019/06/15")} miles today... Do you even own a car?`;
 }
 
-//   -For a user, the distance they have walked (in miles) for the latest day based on their step count
-//Create placeholder tag and style in html and css. create querry selectors to connnect miles walked for day value to placeholder. Create necessary event listener and function to apply to dom.
+function compareUserToAverageDayActivity() {
+  stepGoalVsAverageParagraph.innerText = `Woah... You walked ${userActive.findSpecificStepsWalked("2019/06/15")} steps, while errbody else walked an average of ${activityRepository.findAverageNumberOfStepsTakenForADate("2019/06/15")} steps. You were active for ${userActive.userMinutesActive("2019/06/15")} minutes, while errbody else was active an average of ${activityRepository.findAverageMinutesActiveForADate("2019/06/15")} minutes. You climbed ${userActive.findStairsClimbedSpecificDay("2019/06/15")} flights of stairs, while errbody else climbed an average of ${activityRepository.findAverageFlightsOfStairsClimbedForADate("2019/06/15")} flights of stairs. What matters is that you're trying your best, right??`
+}
 
-//   -How their number of steps, minutes active, and flights of stairs climbed compares to all users for the latest day
-// create placeholder tags and style in html and css. create query selector for user day values and average values perhaps side by side or over eachother, apply each value of the weekly from activities day and averaged day averaged acitivites of all users day to particular spots in the placeholder, I would consider an iterator method to create html for the widget.
+function displayAcitityForWeek() {
+  let weeklyInfo = userActive.findActivityWeek("2019/06/15", "2019/06/22");
+  let rundownList = weeklyInfo.map(info => {
+    return `On day ${weeklyInfo.indexOf(info) + 1} you walked ${info.numSteps} steps, were active for ${info.minutesActive} minutes, and climbed ${info.flightsOfStairs} flights of stairs!`;
+  })
+  let weeklyRundown = rundownList.join(' ');
+  weekActivityParagraph.innerText = `${weeklyRundown}`;
+}
+  // weekActivityParagraph1 .innerText = `On the first day you walked ${weeklyInfo[0].numSteps} steps, were active for ${weeklyInfo[0].minutesActive} minutes, and climbed ${weeklyInfo[0].flightsOfStairs} flights of stairs!`;
+  // weekActivityParagraph5 .innerText = `On the second day you walked ${weeklyInfo[1].numSteps} steps, were active for ${weeklyInfo[1].minutesActive} minutes, and climbed ${weeklyInfo[1].flightsOfStairs} flights of stairs!`;
+  // weekActivityParagraph2 .innerText = `On the third day you walked ${weeklyInfo[2].numSteps} steps, were active for ${weeklyInfo[2].minutesActive} minutes, and climbed ${weeklyInfo[2].flightsOfStairs} flights of stairs!`;
+  // weekActivityParagraph3 .innerText = `On the fourth day you walked ${weeklyInfo[3].numSteps} steps, were active for ${weeklyInfo[3].minutesActive} minutes, and climbed ${weeklyInfo[3].flightsOfStairs} flights of stairs!`;
+  // weekActivityParagraph4 .innerText = `On the fifth day you walked ${weeklyInfo[4].numSteps} steps, were active for ${weeklyInfo[4].minutesActive} minutes, and climbed ${weeklyInfo[4].flightsOfStairs} flights of stairs!`;
+  // weekActivityParagraph6 .innerText = `On the sixth day you walked ${weeklyInfo[5].numSteps} steps, were active for ${weeklyInfo[5].minutesActive} minutes, and climbed ${weeklyInfo[5].flightsOfStairs} flights of stairs!`;
+  // weekActivityParagraph7 .innerText = `On the seventh day you walked ${weeklyInfo[6].numSteps} steps, were active for ${weeklyInfo[6].minutesActive} minutes, and climbed ${weeklyInfo[6].flightsOfStairs} flights of stairs!`;
+
+
 
 //   -For a user, a weekly view of their step count, flights of stairs climbed, and minutes active
 //create placeholder tags and style in html and css. create query selector for days of weeks, apply each value of the weekly from activities to particular spots in the placeholder, I would consider an iterator method to create html for the widget.
