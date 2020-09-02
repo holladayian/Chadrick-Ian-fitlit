@@ -40,17 +40,17 @@ class UserSleep {
   }
 
   specificUserWeeklySleepHours(startDate, endDate) {
-    const weeklySchedule = this.findSleepWeek(startDate, endDate);
+    let weeklySchedule = this.findSleepWeek(startDate, endDate);
     return weeklySchedule.map(day => day.hoursSlept);
   }
 
   specificUserWeeklySleepQuality(startDate, endDate) {
-    const weeklySchedule = this.findSleepWeek(startDate, endDate);
+    let weeklySchedule = this.findSleepWeek(startDate, endDate);
     return weeklySchedule.map(day => day.sleepQuality);
   }
 
   userWeeklySleepQualityAverage(startDate, endDate) {
-    const weeklySchedule = this.findSleepWeek(startDate, endDate);
+    let weeklySchedule = this.findSleepWeek(startDate, endDate);
     let overallWeekQuality = weeklySchedule.reduce((totalWeekQuality, day) => {
       return totalWeekQuality += day.sleepQuality
     }, 0);

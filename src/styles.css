@@ -10,6 +10,19 @@ body {
   background-color: gray;
 }
 
+.date-submittor {
+  height: 35px;
+}
+
+.submit-date-input {
+  max-height: 35px;
+  width: 100px;
+}
+
+.submit-date-button {
+  max-height: 35px;
+}
+
 .dashboard {
   display: grid;
   grid-template-columns: 1, 1, 1, 1;
@@ -105,10 +118,10 @@ body {
   grid-row: 3 / 5;
 }
 
-* {
+/* * {
   box-sizing: border-box;
-}
-.multi-selectbox{
+} */
+/* .multi-selectbox{
   position:relative;
   overflow:hidden;
   margin: 15px auto;
@@ -117,16 +130,16 @@ body {
   max-width: 300px;
   background:#ddd;
   border: 1px solid #ddd
-}
-.selectbox-scrollable{
+} */
+/* .selectbox-scrollable{
   overflow-y:scroll;
   position:absolute;
   padding:0 7px 0 0;
   width: calc(100% + 17px);
   height:100%;
   border:0;
-}
-.selectbox-scrollbar-rail {
+} */
+/* .selectbox-scrollbar-rail {
   position:absolute;
   overflow:auto;
   top:0px;
@@ -136,8 +149,8 @@ body {
   background:#ddd;
   width:5px;
   border-radius:0px;
-}
-.selectbox-scrollbar{
+} */
+/* .selectbox-scrollbar{
   cursor:n-resize;
   position:absolute;
   overflow:auto;
@@ -147,7 +160,7 @@ body {
   background:#444;
   width:5px;
   border-radius:px;
-}
+} */
 
 .title-and-date-picker {
   display: flex;
