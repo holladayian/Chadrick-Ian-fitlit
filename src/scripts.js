@@ -109,12 +109,13 @@ function displaySleepWeek(startDate, endDate) {
     return `On day ${sleepHours.indexOf(day) + 1} you slept ${day} hours!`;
   })
   let weeklySleep = sleepDayList.join(' ');
-  console.log(weeklySleep);
   weekSleepParagraph.innerText = `${weeklySleep}`;
 }
 
-function findSleepOutliers(startDate) {
-  sleepExtremists.innerText = `${sleepRepository.whoIsTheSleepOutlier(startDate, "max")} slept the most on ${startDate}, and ${sleepRepository.whoIsTheSleepOutlier(startDate, "min")} slept the least!`;
+function displaySleepOutliers(startDate) {
+  let sleepWinner = userRepository.instantiateUser(sleepRepository.whoIsTheSleepOutlier(startDate, "max").userID);
+  let sleepLoser = userRepository.instantiateUser(sleepRepository.whoIsTheSleepOutlier(startDate, "min").userID);
+  sleepExtremists.innerText = `${sleepWinner.name} slept the most on ${startDate}, and ${sleepLoser.name} slept the least!`;
 }
 
 function displayAllTimeSleepStuff() {
@@ -176,7 +177,7 @@ function findADate(event, submitDateInput) {
   displaySleepDay(selectDate(thisSelectedDate));
   displayWeeklyWaterConsumption(findBeginningOfWeek(thisSelectedDate), selectDate(thisSelectedDate));
   displayTodaysWaterConsumption(selectDate(thisSelectedDate));
-  findSleepOutliers(selectDate(thisSelectedDate);
+  displaySleepOutliers(selectDate(thisSelectedDate));
 }
 
 function selectDate(day) {
