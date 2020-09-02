@@ -16,7 +16,7 @@ describe('UserRepository', () => {
   });
 
   it('should take in user data', () => {
-    expect(userRepo.data[0]).to.deep.equal(
+    expect(userRepo.listOfUsers[0]).to.deep.equal(
       {
         "id": 1,
         "name": "Luisa Hane",
@@ -52,8 +52,8 @@ describe('UserRepository', () => {
   it('should have a method to return the average step goal amongst all users', () => {
     expect(userRepo.findTotalAverageStepGoal()).to.equal(6666);
   });
-  // 
+  //
   // it('should instantiate a user', () => {
-  //   expect(userRepo.instantiateUser(1)).to.equal('x');
+  //   expect(userRepo.instantiateUser(1)).to.be.an.instanceof(User);
   // });
 });
