@@ -112,7 +112,10 @@ function displaySleepWeek(startDate, endDate) {
   weekSleepParagraph.innerText = `${weeklySleep}`;
 }
 
-
+function findWhoSleepsMost(startDate) {
+  let sleepRager = sleepRepository.whoIsTheSleepOutlier(startDate, "max");
+  
+}
 
 function displayAllTimeSleepStuff() {
   allTimeSleepParagraph.innerText = `Your all time sleep quality average is ${userSleep.findAllTimeSleepQualityAverage()} out of 10, and your all time average sleep hours is ${userSleep.findAllTimeHoursSleptAverage()} hours`
