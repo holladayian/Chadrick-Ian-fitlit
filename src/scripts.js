@@ -34,8 +34,9 @@ const dailyMinutesActiveParagraph = document.querySelector(".daily-minutes-activ
 const dailyDistanceWalkedParagraph = document.querySelector(".daily-distance-walked-paragraph");
 
 
-window.onload(loadInfoForDashboard());
-window.addEventListener('click', findBeginningOfWeek);
+// window.onload(loadInfoForDashboard());
+window.addEventListener('onload', loadInfoForDashboard());
+// window.addEventListener('click', findBeginningOfWeek);
 
 // -This JS file should call methods from your classes to retrieve information.
 //-There should not be any DOM manipulation within the User or UserRepository class files.
@@ -58,6 +59,7 @@ function loadInfoForDashboard() {
   displayLatestMilesWalked();
   // intantiateRepositories();
   fillOutUserInfoCard();
+  displayLatestDaySteps();
 }
 // function intantiateRepositories() {
 //   userRepository = new UserRepository();
@@ -71,7 +73,7 @@ function loadInfoForDashboard() {
 //We need to create a variable to hold the data from the individual user data. perhaps creating an empty variable of userData and creating a function that applies the user data to the the variable after an event which would require an event listener and relevant function.
 //id: userData.id,
 function fillOutUserInfoCard() {
-  cardName.innerText=  `${user.userData.name}`;
+  cardName.innerText =  `${user.userData.name}`;
   cardAddress.innerText = `${user.userData.address}`;
   cardEmail.innerText = `${user.userData.email}`;
   cardStrideLength.innerText = `${user.userData.strideLength}`;
