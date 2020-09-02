@@ -16,24 +16,11 @@ describe('UserRepository', () => {
   });
 
   it('should take in a single user data', () => {
-    expect(user.userData).to.deep.equal(
-      {
-        "id": 1,
-        "name": "Luisa Hane",
-        "address": "15195 Nakia Tunnel, Erdmanport VA 19901-1697",
-        "email": "Diana.Hayes1@hotmail.com",
-        "strideLength": 4.3,
-        "dailyStepGoal": 10000,
-        "friends": [
-          2,
-          3,
-        ]
-      }
-    );
+    expect(user.name).to.deep.equal("Luisa Hane");
   });
 
   it('should have proper key/values for user data', () => {
-    expect(user.userData.id).to.equal(1);
+    expect(user.id).to.equal(1);
   });
 
   it('should return users first name only', () => {

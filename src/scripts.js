@@ -60,20 +60,20 @@ function loadInfoForDashboard() {
 }
 
 function fillOutUserInfoCard() {
-  cardName.innerText =  `${user.userData.name}`;
-  cardAddress.innerText = `${user.userData.address}`;
-  cardEmail.innerText = `${user.userData.email}`;
-  cardStrideLength.innerText = `${user.userData.strideLength}`;
-  cardDailyStepGoal.innerText = `${user.userData.dailyStepGoal}`;
-  // cardFriends.innerText = `${user.userData.friends}`;
+  cardName.innerText =  `${user.name}`;
+  cardAddress.innerText = `${user.address}`;
+  cardEmail.innerText = `${user.email}`;
+  cardStrideLength.innerText = `${user.strideLength}`;
+  cardDailyStepGoal.innerText = `${user.dailyStepGoal}`;
+  // cardFriends.innerText = `${user.friends}`;
 }
 
 function fillOutWelcome() {
-  welcomeParagraph.innerText = `Yooohoo ${user.userData.name}`
+  welcomeParagraph.innerText = `Yooohoo ${user.name}`
 }
 
 function compareSteps() {
-  compareUserActivityParagraph.innerText = `your shit is ${user.userData.dailyStepGoal}, errbody else has an average of ${userRepository.findTotalAverageStepGoal()}`
+  compareUserActivityParagraph.innerText = `your shit is ${user.dailyStepGoal}, errbody else has an average of ${userRepository.findTotalAverageStepGoal()}`
 }
 
 function displayTodaysWaterConsumption() {
