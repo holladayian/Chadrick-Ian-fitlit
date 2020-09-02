@@ -1,8 +1,8 @@
   // const UserHydration = require('../src/userHydration');
 
 class HydrationRepository {
-  constructor(userData) {
-    this.hydroInfo = userData;
+  constructor(hydrationData) {
+    this.hydroInfo = hydrationData;
   }
 
   obtainUser(userID) {
