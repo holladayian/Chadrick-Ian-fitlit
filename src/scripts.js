@@ -135,6 +135,18 @@ function displayLatestMilesWalked(startDate) {
   dailyDistanceWalkedParagraph.innerText = `Sheesh... You seriously walked ${userActive.findMilesWalkedSpecificDay(startDate)} miles today... Do you even own a car?`;
 }
 
+function displayFriendChallenge(startDate, endDate) {
+  let friends = activityRepository.findFriends(1);
+  let friendSteps = friends.map(friend => friend.findTotalStepsForAWeek(startDate, endDate));
+  let friendWinner = friends.find(friend => {
+    if (friend.findTotalStepsForAWeek(startDate, endDate) === Math.max(...friendSteps)) {
+      return friend
+    }
+    })
+    console.log(friendWinner.user.name);
+    // friendWinner.innetText = `${friendWinner.user.name} was the most active for the week. What? You couldn't keep up?`
+}
+
 function displayLaziestPerson(startDate) {
   let lazzyPerson = userRepository.instantiateUser(activityRepository.findLaziestPersonForADate(startDate).userID);
   laziestPerson.innerText = `${lazzyPerson.name} was the laziest person! congrats!!`
@@ -185,6 +197,7 @@ function findADate(event, submitDateInput) {
   displayTodaysWaterConsumption(selectDate(thisSelectedDate));
   displaySleepOutliers(selectDate(thisSelectedDate));
   displayLaziestPerson(selectDate(thisSelectedDate));
+  displayFriendChallenge(findBeginningOfWeek(thisSelectedDate), selectDate(thisSelectedDate));
 }
 
 function selectDate(day) {

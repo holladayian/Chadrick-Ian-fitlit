@@ -50,9 +50,9 @@ class UserActivity {
 
   findTotalStepsForAWeek(startDate, endDate) {
     let week = this.findActivityWeek(startDate, endDate);
-    week.filter((totalSteps, day) => {
+    return week.reduce((totalSteps, day) => {
       return totalSteps += day.numSteps
-    })
+    }, 0)
   }
 
   findOutDayStepGoalReached(date) {
