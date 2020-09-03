@@ -28,6 +28,16 @@ A Project by Chadrick Dickerson & Ian Holladay
 * Display information on the page while maintaining ability to test class properties and methods
 * Create a data dashboard that is easy to use and displays information in a clear way
 
+## Theme
+
+Both partners have a well-meaning dark sense of humor. This project is not intended to cause offense, but to instead come from a comical approach. We hope you enjoy our Rude Habit Coach.
+
+## Accessability
+
+- Color scheme: Our app is monochromatic to accomadate for those with visual impairments regarding color
+- Font: We used Comic Sans MS to accomadate to those who have trouble reading certain fonts
+- We have used voice over to make sure of the accessability of our project, and made sure that the entire application is read in an organized fashion
+
 ## Visuals
 
 ![img of webpage](img/RudeHabitCoach.png)
