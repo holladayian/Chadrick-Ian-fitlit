@@ -77,16 +77,16 @@ function interpolateFriends(id) {
 }
 
 function fillOutWelcome() {
-  welcomeParagraph.innerText = `Yooohoo ${user.name}... Sweet tarnation! Looks like you've been hitting up them there country buffets a little tooooo frequently...`
+  welcomeParagraph.innerText = `Yooohoo ${user.name}... Sweet tarnation!  Looks like you've been hitting up them there country buffets a little tooooo frequently...`
 }
 
 function compareSteps() {
-  compareUserActivityParagraph.innerText = `Your daily step goal is ${user.dailyStepGoal} steps, while errbody else has an average of ${userRepository.findTotalAverageStepGoal()} steps. Your expectations might be too high for ur level of physical prowess...`
+  compareUserActivityParagraph.innerText = `👣 Your daily step goal is ${user.dailyStepGoal} steps, while errbody else has an average of ${userRepository.findTotalAverageStepGoal()} steps. Your expectations might be too high for ur level of physical prowess... `
 }
 
 function displayTodaysWaterConsumption(startDate) {
   // the below date will need to be passed in dynamically
-  dailyWaterParagraph.innerText = `Ya don drank ${userHydro.findSpecificDayHydration(startDate)} ounces today`
+  dailyWaterParagraph.innerText = `Ya don drank ${userHydro.findSpecificDayHydration(startDate)} ounces of pond whatur today! Watch out for dem gators! `
 }
 
 function displayWeeklyWaterConsumption(startDate, endDate) {
@@ -114,7 +114,7 @@ function displaySleepWeek(startDate, endDate) {
 
 function findWhoSleepsMost(startDate) {
   let sleepRager = sleepRepository.whoIsTheSleepOutlier(startDate, "max");
-  
+
 }
 
 function displayAllTimeSleepStuff() {
