@@ -10,7 +10,6 @@ class UserRepository {
   }
 
   findUserInfo(userID) {
-    // rename to getUser
     return this.listOfUsers.find(userDatum => {
       if (userDatum.id === userID) {
         return userDatum;

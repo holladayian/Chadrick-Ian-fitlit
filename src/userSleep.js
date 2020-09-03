@@ -63,7 +63,6 @@ class UserSleep {
       return sum;
     },0);
     return Math.floor(totalSleepQuality/this.userSleepInformation.length);
-    // we might have to get rid of Math.floor, or use a method to get the 2nd decimal point
   }
 }
 

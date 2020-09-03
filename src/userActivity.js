@@ -5,7 +5,6 @@ class UserActivity {
   constructor(userInfo, user) {
     this.userActivityInformation = userInfo;
     this.user = user;
-    // this.user = user.userData;
   }
 
   findSpecificStepsWalked(date) {
@@ -13,9 +12,7 @@ class UserActivity {
   }
 
   findMilesWalkedSpecificDay(date) {
-    let userSteps =
-      this.findSpecificStepsWalked(date);
-      // this.findStartDateInfo(date).numSteps;
+    let userSteps = this.findSpecificStepsWalked(date);
       let userMilesWalked = (userSteps * this.user.strideLength) / 5280;
     return Math.round(userMilesWalked * 100) / 100;
   }
@@ -51,7 +48,7 @@ class UserActivity {
   findTotalStepsForAWeek(startDate, endDate) {
     let week = this.findActivityWeek(startDate, endDate);
     return week.reduce((totalSteps, day) => {
-      return totalSteps += day.numSteps
+      return totalSteps += day.numSteps;
     }, 0)
   }
 

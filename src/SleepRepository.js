@@ -16,7 +16,7 @@ class SleepRepository {
   obtainUser(id) {
     return this.sleepInformation.filter(userInfo => {
       if (userInfo.userID === id) {
-        return userInfo
+        return userInfo;
 
       }
     })

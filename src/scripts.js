@@ -67,11 +67,11 @@ function interpolateFriends(id) {
 }
 
 function fillOutWelcome() {
-  welcomeParagraph.innerText = `Yooohoo ${user.name}... Sweet tarnation!  Looks like you've been hitting up the country buffets a little tooooo frequently...`
+  welcomeParagraph.innerText = `Well hello there ${user.name}!`
 }
 
 function compareSteps() {
-  compareUserActivityParagraph.innerText = `👣 Your daily step goal is ${user.dailyStepGoal} steps, while everybody else has an average of ${userRepository.findTotalAverageStepGoal()} steps. Your expectations might be too high for your level of physical prowess... `
+  compareUserActivityParagraph.innerText = `Your daily step goal is ${user.dailyStepGoal} steps, while the average step goal of everybody else is ${userRepository.findTotalAverageStepGoal()} steps. Your expectations might be too high for your level of physical prowess... LOL.`
 }
 
 function displayTodaysWaterConsumption(startDate) {
@@ -81,14 +81,14 @@ function displayTodaysWaterConsumption(startDate) {
 function displayWeeklyWaterConsumption(startDate, endDate) {
   let waterWeek = userHydro.findHydrationWeek(startDate, endDate);
   let waterDayList = waterWeek.map(day => {
-    return `On day ${waterWeek.indexOf(day) + 1} you drank ${day.numOunces} ounces of pond water!`;
+    return `On day ${waterWeek.indexOf(day) + 1} you gone done drank ${day.numOunces} ounces of pond water!`;
   })
   let weeklyWater = waterDayList.join(' ');
   weekWaterParagraph.innerText = `${weeklyWater}`;
 }
 
 function displaySleepDay(startDate) {
-  lastNightSleepParagraph.innerText = `Last night you slept ${userSleep.findSpecificDaySleepHours(startDate)} hours! It shows.`;
+  lastNightSleepParagraph.innerText = `Last night you done gone slept ${userSleep.findSpecificDaySleepHours(startDate)} hours! Watch out for them bedbugs. They've got their hungry eyes on you!`
 }
 
 function displaySleepWeek(startDate, endDate) {
@@ -107,19 +107,19 @@ function displaySleepOutliers(startDate) {
 }
 
 function displayAllTimeSleepStuff() {
-  allTimeSleepParagraph.innerText = `Your all time sleep quality average is ${userSleep.findAllTimeSleepQualityAverage()} out of 10, and your all time average sleep is ${userSleep.findAllTimeHoursSleptAverage()} hours a day. Wow.`
+  allTimeSleepParagraph.innerText = `Your all time sleep quality average is ${userSleep.findAllTimeSleepQualityAverage()} out of 10, and your all time average sleep hours is ${userSleep.findAllTimeHoursSleptAverage()} hours.`
 }
 
 function displayLatestDaySteps(startDate) {
-  dailyStepsParagraph.innerText = `You walked ${userActive.findSpecificStepsWalked(startDate)} steps this day. Well... There's always tomorrow!`;
+  dailyStepsParagraph.innerText = `You done gone walked ${userActive.findSpecificStepsWalked(startDate)} steps today. Well! There's always tomorrow? He he he.`;
 }
 
 function displayLatestMinutesActive(startDate) {
-  dailyMinutesActiveParagraph.innerText = `You were active for ${userActive.userMinutesActive(startDate)} minutes this day. Way to go?`;
+  dailyMinutesActiveParagraph.innerText = `You were active for a lousy ${userActive.userMinutesActive(startDate)} minutes today? Way to go? Ha ha ha.`;
 }
 
 function displayLatestMilesWalked(startDate) {
-  dailyDistanceWalkedParagraph.innerText = `Sheesh... You seriously walked ${userActive.findMilesWalkedSpecificDay(startDate)} miles this day... Do you even own a car?`;
+  dailyDistanceWalkedParagraph.innerText = `Sheesh! You seriously walked ${userActive.findMilesWalkedSpecificDay(startDate)} miles today? Do you even own a car?`;
 }
 
 function displayFriendChallenge(startDate, endDate) {
@@ -139,7 +139,7 @@ function displayLaziestPerson(startDate) {
 }
 
 function compareUserToAverageDayActivity(startDate) {
-  stepGoalVsAverageParagraph.innerText = `Woah... You walked ${userActive.findSpecificStepsWalked(startDate)} steps, while everybody else walked an average of ${activityRepository.findAverageNumberOfStepsTakenForADate(startDate)} steps. You were active for ${userActive.userMinutesActive(startDate)} minutes, while everyone else was active an average of ${activityRepository.findAverageMinutesActiveForADate(startDate)} minutes. You climbed ${userActive.findStairsClimbedSpecificDay(startDate)} flights of stairs, while everyone else climbed an average of ${activityRepository.findAverageFlightsOfStairsClimbedForADate(startDate)} flights of stairs. What matters is that you're trying your best, right??`
+  stepGoalVsAverageParagraph.innerText = `Wow! You walked ${userActive.findSpecificStepsWalked(startDate)} steps, while everybody else walked an average of ${activityRepository.findAverageNumberOfStepsTakenForADate(startDate)} steps. You were active for ${userActive.userMinutesActive(startDate)} minutes, while everybody else was active an average of ${activityRepository.findAverageMinutesActiveForADate(startDate)} minutes. You climbed ${userActive.findStairsClimbedSpecificDay(startDate)} flights of stairs, while everybody else climbed an average of ${activityRepository.findAverageFlightsOfStairsClimbedForADate(startDate)} flights of stairs. What matters is that your friends are doing better than you. Ha ha ha.`
 }
 
 function displayAcitityForWeek(startDate, endDate) {
