@@ -144,7 +144,7 @@ function displayFriendChallenge(startDate, endDate) {
     }
     })
     console.log(friendWinner.user.name);
-    // friendWinner.innetText = `${friendWinner.user.name} was the most active for the week. What? You couldn't keep up?`
+    // friendWinner.innetText = `${friendWinner.user.name} was the most active friend for the week. Did you even try?`
 }
 
 function displayLaziestPerson(startDate) {
