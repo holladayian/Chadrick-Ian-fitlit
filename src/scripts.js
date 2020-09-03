@@ -81,7 +81,7 @@ function fillOutWelcome() {
 }
 
 function compareSteps() {
-  compareUserActivityParagraph.innerText = `Your daily step goal is ${user.dailyStepGoal} steps, while the average step goal of everybody else is ${userRepository.findTotalAverageStepGoal()} steps. Your expectations might be too high for your level of physical prowess... LOL`
+  compareUserActivityParagraph.innerText = `Your daily step goal is ${user.dailyStepGoal} steps, while the average step goal of everybody else is ${userRepository.findTotalAverageStepGoal()} steps. Your expectations might be too high for your level of physical prowess... LOL.`
 }
 
 function displayTodaysWaterConsumption(startDate) {
