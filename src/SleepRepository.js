@@ -1,13 +1,13 @@
-const sleepSamples = require('../data/sleepSamples');
-const UserSleep = require('../src/userSleep');
-const moment = require('moment');
+  // const UserSleep = require('../src/userSleep');
+  // const moment = require('moment');
+
 
 class SleepRepository {
-  constructor() {
-    this.sleepInformation = sleepSamples;
+  constructor(sleepRepoInfo) {
+    this.sleepInformation = sleepRepoInfo;
   }
   findSleepWeek(startDate, endDate) {
-    return sleepSamples.filter(day => {
+    return this.sleepInformation.filter(day => {
       if(moment(day.date).isAfter(startDate) && moment(day.date).subtract(1, 'day').isBefore(endDate)) {
         return day;
       }
@@ -16,7 +16,7 @@ class SleepRepository {
   obtainUser(id) {
     return this.sleepInformation.filter(userInfo => {
       if (userInfo.userID === id) {
-        return userInfo
+        return userInfo;
 
       }
     })
@@ -26,34 +26,17 @@ class SleepRepository {
   }
 
   findAllUsersAverageSleepQuality() {
-    // const weeklySchedule = this.findSleepWeek(startDate, endDate);
-    // let allUserIDs = sleepSamples.map(user => user.userID);
-    // let individualUserIDs = Array.from(new Set(allUserIDs));
-    // let sleepUsers = individualUserIDs.map(sleepUserID => this.instantiateUserSleep(sleepUserID));
-    // let totalSleepQuality = sleepUsers.reduce((sleepQualityTotal, sleepUser) => {
-    //   // console.log(user.userSleepInformation.map(day => day.sleepQuality));
-    //   return sleepQualityTotal += sleepUser.userSleepInformation.map(day => day.sleepQuality).reduce((usersDays, sleepForADay) => {
-    //     return usersDays += sleepForADay
-    //   }, 0);
-    // }, 0)
     const totalSleepQuality = this.sleepInformation.reduce((sleepQualityTotal, sleepQualityDay) => {
       return sleepQualityTotal += sleepQualityDay.sleepQuality
     }, 0)
-
-    // let usersWeeks = individualUserIDs.map(sleepUser => this.instantiateUserSleep(sleepUser));
     let totalSleepQualityAverage = totalSleepQuality / this.sleepInformation.length;
-
     return Math.floor(totalSleepQualityAverage);
-
-    // specificUsersWeek.map(specificUser => this.)
-    // return specificUsersWeek;
   }
 
   instantiateAllUsers() {
-    let allUserIDs = sleepSamples.map(user => user.userID);
+    let allUserIDs = this.sleepInformation.map(user => user.userID);
     let individualUserIDs = Array.from(new Set(allUserIDs));
     return individualUserIDs.map(sleepUserID => this.instantiateUserSleep(sleepUserID));
-
   }
 
   findSleepQualitiesAverageGreaterThanThree(startDay, endDay) {
@@ -80,4 +63,6 @@ class SleepRepository {
   }
 }
 
-module.exports = SleepRepository
+if (typeof(module) !== 'undefined') {
+  module.exports = SleepRepository;
+}

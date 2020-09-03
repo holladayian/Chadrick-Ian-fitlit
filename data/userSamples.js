@@ -7,9 +7,8 @@ const userSampleData = [
     "strideLength": 4.3,
     "dailyStepGoal": 10000,
     "friends": [
-      16,
-      4,
-      8
+      2,
+      3
     ]
   },
   {
@@ -42,4 +41,6 @@ const userSampleData = [
   }
 ];
 
-module.exports = userSampleData;
+if (typeof(module) !== 'undefined') {
+  module.exports = userSampleData;
+}

@@ -1,10 +1,8 @@
-const hydrationSamples = require('../data/hydrationSamples');
-const UserHydration = require('../src/userHydration');
-
+  // const UserHydration = require('../src/userHydration');
 
 class HydrationRepository {
-  constructor() {
-    this.hydroInfo = hydrationSamples;
+  constructor(hydrationData) {
+    this.hydroInfo = hydrationData;
   }
 
   obtainUser(userID) {
@@ -20,4 +18,6 @@ class HydrationRepository {
   }
 }
 
-module.exports = HydrationRepository;
+if (typeof(module) !== 'undefined') {
+  module.exports = HydrationRepository;
+}

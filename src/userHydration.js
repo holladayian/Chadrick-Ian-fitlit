@@ -1,23 +1,23 @@
-const moment = require('moment');
+  // const moment = require('moment');
 
 class UserHydration {
-  constructor(user) {
-    this.userHydrationInformation = user;
+  constructor(userHydroInfo) {
+    this.userHydrationInformation = userHydroInfo;
   }
 
   findAllTimeHydrationAverage() {
-    let totalHydration = this.userHydrationInformation.reduce((accumulator, day) => {
-      return accumulator += day.numOunces;
+    let totalHydration = this.userHydrationInformation.reduce((accumulatedHydration, day) => {
+      return accumulatedHydration += day.numOunces;
     }, 0);
     return Math.floor(totalHydration / this.userHydrationInformation.length);
   }
 
-  findSpecificDayHydration(date) {
-    return this.findStartDateInfo(date).numOunces;
+  findSpecificDayHydration(selectedDate) {
+    return this.findStartDateInfo(selectedDate).numOunces;
   }
 
-  findStartDateInfo(date) {
-    return this.userHydrationInformation.find(datum => datum['date'] === date);
+  findStartDateInfo(selectedDate) {
+    return this.userHydrationInformation.find(day => day.date === selectedDate);
   }
 
   findHydrationWeek(startDate, endDate) {
@@ -34,4 +34,6 @@ class UserHydration {
   }
 }
 
-module.exports = UserHydration;
+if (typeof(module) !== 'undefined') {
+  module.exports = UserHydration;
+}

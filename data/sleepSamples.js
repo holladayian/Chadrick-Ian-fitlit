@@ -149,4 +149,6 @@ const sleepSampleData = [
   }
 ];
 
-module.exports = sleepSampleData;
+if (typeof(module) !== 'undefined') {
+  module.exports =  sleepSampleData;
+}

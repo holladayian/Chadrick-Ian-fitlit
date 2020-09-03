@@ -1,22 +1,29 @@
-const moment = require('moment');
-const UserRepository = require('../src/UserRepository');
+  // const UserRepository = require('../src/userRepository');
+  // const moment = require('moment');
 
 class UserActivity {
   constructor(userInfo, user) {
     this.userActivityInformation = userInfo;
-    this.user = user.userData;
+    this.user = user;
+  }
+
+  findSpecificStepsWalked(date) {
+    return this.findStartDateInfo(date).numSteps;
   }
 
   findMilesWalkedSpecificDay(date) {
-    let userSteps = this.findStartDateInfo(date).numSteps;
+    let userSteps = this.findSpecificStepsWalked(date);
       let userMilesWalked = (userSteps * this.user.strideLength) / 5280;
     return Math.round(userMilesWalked * 100) / 100;
+  }
+
+  findStairsClimbedSpecificDay(date) {
+    return this.findStartDateInfo(date).flightsOfStairs;
   }
 
   findStartDateInfo(date) {
     return this.userActivityInformation.find(datum => datum['date'] === date);
   }
-// this below functionality needs to be accessed higher up the scope chain
 
   userMinutesActive(date) {
     return this.findStartDateInfo(date).minutesActive;
@@ -38,12 +45,18 @@ class UserActivity {
     })
   }
 
+  findTotalStepsForAWeek(startDate, endDate) {
+    let week = this.findActivityWeek(startDate, endDate);
+    return week.reduce((totalSteps, day) => {
+      return totalSteps += day.numSteps;
+    }, 0)
+  }
+
   findOutDayStepGoalReached(date) {
     let userSteps = this.findStartDateInfo(date).numSteps;
     return userSteps >= this.user.dailyStepGoal;
   }
 
-  //Below: For a user, find all the days where they exceeded their step goal
   findAllDaysStepGoalExceeded() {
     let userStepGoal = this.user.dailyStepGoal;
     return this.userActivityInformation.filter(day => {
@@ -63,4 +76,6 @@ class UserActivity {
   }
 }
 
-module.exports = UserActivity;
+if (typeof(module) !== 'undefined') {
+  module.exports = UserActivity;
+}

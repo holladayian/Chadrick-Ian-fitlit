@@ -1,16 +1,16 @@
-const userSamples = require('../data/userSamples');
-const User = require('../src/user');
-
-
+// if (typeof(require) !== 'undefined') {
+//   const userSamples = require('../data/userSamples');
+// }
+// // I dont think this require conditional is working how we though it should
+// const User = require('../src/user');
 
 class UserRepository {
-  constructor() {
-    this.data = userSamples;
+  constructor(userList) {
+    this.listOfUsers = userList;
   }
 
   findUserInfo(userID) {
-    // rename to getUser
-    return this.data.find(userDatum => {
+    return this.listOfUsers.find(userDatum => {
       if (userDatum.id === userID) {
         return userDatum;
       }
@@ -22,13 +22,13 @@ class UserRepository {
   }
 
   findTotalAverageStepGoal() {
-    let totalStepGoal = this.data.reduce((accumulator, userDatum) => {
-      return (accumulator += userDatum['dailyStepGoal']);
+    let totalStepGoal = this.listOfUsers.reduce((allStepGoals, userDatum) => {
+      return (allStepGoals += userDatum.dailyStepGoal);
     }, 0);
-    return Math.floor(totalStepGoal / this.data.length);
+    return Math.floor(totalStepGoal / this.listOfUsers.length);
   }
 }
 
-
-
-module.exports = UserRepository;
+if (typeof(module) !== 'undefined') {
+  module.exports = UserRepository;
+}

@@ -1,5 +1,4 @@
-const sleepSamples = require('../data/sleepSamples');
-const moment = require('moment');
+  // const moment = require('moment');
 
 class UserSleep {
   constructor(user) {
@@ -41,17 +40,17 @@ class UserSleep {
   }
 
   specificUserWeeklySleepHours(startDate, endDate) {
-    const weeklySchedule = this.findSleepWeek(startDate, endDate);
+    let weeklySchedule = this.findSleepWeek(startDate, endDate);
     return weeklySchedule.map(day => day.hoursSlept);
   }
 
   specificUserWeeklySleepQuality(startDate, endDate) {
-    const weeklySchedule = this.findSleepWeek(startDate, endDate);
+    let weeklySchedule = this.findSleepWeek(startDate, endDate);
     return weeklySchedule.map(day => day.sleepQuality);
   }
 
   userWeeklySleepQualityAverage(startDate, endDate) {
-    const weeklySchedule = this.findSleepWeek(startDate, endDate);
+    let weeklySchedule = this.findSleepWeek(startDate, endDate);
     let overallWeekQuality = weeklySchedule.reduce((totalWeekQuality, day) => {
       return totalWeekQuality += day.sleepQuality
     }, 0);
@@ -64,10 +63,9 @@ class UserSleep {
       return sum;
     },0);
     return Math.floor(totalSleepQuality/this.userSleepInformation.length);
-    // we might have to get rid of Math.floor, or use a method to get the 2nd decimal point
   }
 }
 
-
-
-module.exports = UserSleep;
+if (typeof(module) !== 'undefined') {
+  module.exports = UserSleep;
+}

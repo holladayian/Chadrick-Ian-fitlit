@@ -1,12 +1,13 @@
-const UserActivity = require('../src/UserActivity');
-const activitySamples = require('../data/activitySamples');
-const UserRepository = require('../src/UserRepository');
+// const UserActivity = require('../src/userActivity');
+// const UserRepository = require('../src/userRepository');
+// // const userRepository = new UserRepository(userData);
 
 
 class ActivityRepository {
-  constructor() {
-    this.activityInformation = activitySamples;
-  };
+
+  constructor(userInfo) {
+    this.activityInformation = userInfo;
+  }
 
   obtainActivityUser(id) {
     return this.activityInformation.filter(userInfo => {
@@ -14,28 +15,23 @@ class ActivityRepository {
         return userInfo;
       }
     })
-  };
+  }
 
   instantiateUserActivity(id) {
     return new UserActivity(this.obtainActivityUser(id), this.findUser(id));
-  };
-
-//
-//
+  }
 
   findUser(id) {
-    // console.log(this.obtainActivityUser(id));
-    return new UserRepository().instantiateUser(this.obtainActivityUser(id)[0].userID);
+    return userRepository.instantiateUser(this.obtainActivityUser(id)[0].userID);
   }
 
-
-// maybe don't need this
-  findUserStride(id) {
-    return this.findUser(id).strideLength
+  findFriends(id) {
+    let friendList = [];
+     this.findUser(id).friends.forEach(friendID => {
+      friendList.push(this.instantiateUserActivity(friendID))
+    })
+    return friendList
   }
-
-//
-//
 
   findAverageFlightsOfStairsClimbedForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
@@ -43,7 +39,7 @@ class ActivityRepository {
       return totalStairs += day.flightsOfStairs;
     }, 0)
     return Math.floor(totalFlightsOfStairsClimbed / specifiedDate.length)
-  };
+  }
 
   findAverageNumberOfStepsTakenForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
@@ -51,7 +47,7 @@ class ActivityRepository {
       return totalSteps += day.numSteps;
     }, 0)
     return Math.floor(totalNumberOfStepsTaken / specifiedDate.length)
-  };
+  }
 
   findAverageMinutesActiveForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
@@ -59,7 +55,7 @@ class ActivityRepository {
       return totalMins += day.minutesActive;
     }, 0)
     return Math.floor(totalMinutesActive / specifiedDate.length);
-  };
+  }
 
   findLaziestPersonForADate(date) {
     let specifiedDate = this.findDateForActivity(date);
@@ -70,11 +66,13 @@ class ActivityRepository {
       }
     });
     return lazziestPerson;
-  };
+  }
 
   findDateForActivity(specifiedDate) {
     return this.activityInformation.filter(day => day.date === specifiedDate);
   }
-};
+}
 
-module.exports = ActivityRepository;
+if (typeof(module) !== 'undefined') {
+  module.exports = ActivityRepository;
+}

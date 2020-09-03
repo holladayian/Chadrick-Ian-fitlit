@@ -1,12 +1,14 @@
 const chai = require('chai');
 const expect = chai.expect;
-const UserRepository = require('../src/UserRepository');
 const User = require('../src/user');
+const UserRepository = require('../src/UserRepository');
+const userSamples = require('../data/userSamples');
+
 
 describe('UserRepository', () => {
   let userRepo;
   beforeEach( () => {
-    userRepo = new UserRepository();
+    userRepo = new UserRepository(userSamples);
   });
 
   it('should be a function', () => {
@@ -14,7 +16,7 @@ describe('UserRepository', () => {
   });
 
   it('should take in user data', () => {
-    expect(userRepo.data[0]).to.deep.equal(
+    expect(userRepo.listOfUsers[0]).to.deep.equal(
       {
         "id": 1,
         "name": "Luisa Hane",
@@ -23,9 +25,8 @@ describe('UserRepository', () => {
         "strideLength": 4.3,
         "dailyStepGoal": 10000,
         "friends": [
-          16,
-          4,
-          8
+          2,
+          3,
         ]
       }
     );
@@ -41,9 +42,8 @@ describe('UserRepository', () => {
         "strideLength": 4.3,
         "dailyStepGoal": 10000,
         "friends": [
-          16,
-          4,
-          8
+          2,
+          3,
         ]
       }
     );
@@ -52,8 +52,8 @@ describe('UserRepository', () => {
   it('should have a method to return the average step goal amongst all users', () => {
     expect(userRepo.findTotalAverageStepGoal()).to.equal(6666);
   });
-
-  it('should instantiate a user', () => {
-    expect(userRepo.instantiateUser(1)).to.be.an.instanceof(User);
-  });
+  //
+  // it('should instantiate a user', () => {
+  //   expect(userRepo.instantiateUser(1)).to.be.an.instanceof(User);
+  // });
 });
