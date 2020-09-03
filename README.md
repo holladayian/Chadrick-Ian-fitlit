@@ -6,11 +6,11 @@ A Project by Chadrick Dickerson & Ian Holladay
 
 ### A Link to the Project Outline can be Found Here
 
-[this project spec](http://frontend.turing.io/projects/fitlit.html).
+[this project spec](http://frontend.turing.io/projects/fitlit.html)
 
 ### A Link to the GH Repo can be Found Here
 
-[this repo link](https://github.com/holladayian/Chadrick-Ian-fitlit).
+[this repo link](https://github.com/holladayian/Chadrick-Ian-fitlit)
 
 ### We can be Located on GitHub
 
@@ -30,7 +30,7 @@ A Project by Chadrick Dickerson & Ian Holladay
 
 ## Visuals
 
-<!-- put a picture here -->
+![img of webpage](img/RudeHabitCoach.png)
 
 ## Install/Setup instructions
 
